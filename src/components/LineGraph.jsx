@@ -11,7 +11,10 @@ import {
 import { useState } from "react";
 import { colorArray, filterCombinations } from "../config/customData";
 import { useDispatch, useSelector } from "react-redux";
-import { changeCombinationFilter, changeIndividualStarFilter } from "../redux/filterLineGraphSlice";
+import {
+  changeCombinationFilter,
+  changeIndividualStarFilter,
+} from "../redux/filterLineGraphSlice";
 
 function LineGraph() {
   const dispatch = useDispatch();
@@ -23,7 +26,7 @@ function LineGraph() {
       <ResponsiveContainer height={300} width={"100%"}>
         <AreaChart data={dataAsPerTime}>
           <XAxis dataKey={"label"} />
-          <YAxis unit={"%"} />
+          <YAxis  unit={"%"} />
           <CartesianGrid strokeDasharray={4} />
           <Tooltip />
           {combinationFilter &&
@@ -34,8 +37,8 @@ function LineGraph() {
                   dataKey={`avg_${combi}`}
                   type={"monotone"}
                   strokeWidth={2}
-                  fill={colorArray[combi]}
-                  stroke={colorArray[combi]}
+                  fill={colorArray[combi-1]}
+                  stroke={colorArray[combi-1]}
                   unit={"%"}
                 />
               </>

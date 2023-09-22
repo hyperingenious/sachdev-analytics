@@ -13,10 +13,17 @@ const lineGraphFilterSlice = createSlice({
   initialState,
   reducers: {
     changeDataAsPerTime(state, action) {
-      state.dataAsPerTime = action.payload.dataAsPerTime;
-      state.timeFilter = action.payload.timeFilter;
+      if (action.payload === "all-time") {
+        state.timeFilter = action.payload;
+        state.dataAsPerTime = growthDataAllTime;
+      }
+      //       if(action.payload === '7-day-time'){
+      // state.timeFilter = action.payload;
+      // state.dataAsPerTime =
+      //       }
     },
     changeCombinationFilter(state, action) {
+      state.individualStarFilter = false;
       state.combinationFilter = action.payload
         .split(",")
         .map((combo) => Number(combo));

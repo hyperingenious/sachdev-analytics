@@ -3,9 +3,11 @@ import { monthNames, rawFromServer } from "../src/config/customData";
 // average rating "all time" of all stars
 function starGrowthLineAllTime() {
   let acc = [0, 0, 0, 0, 0];
-  const growthRawData = rawFromServer.map((graph, index) => {
-    acc[graph.rating - 1]++;
 
+  const growthRawData = rawFromServer.map((graph, index) => {
+    if (graph.rating !== 0) acc[graph.rating - 1]++;
+
+    // making date label for each rating like : Nov 23
     const label = `${monthNames[
       new Date(graph.created_at).getMonth()
     ].substring(0, 3)} ${new Date(graph.created_at)
@@ -34,13 +36,9 @@ function starGrowthLineAllTime() {
 
     if (!uniqueData[uniqueId]) uniqueData[uniqueId] = item;
   });
-  console.log(Object.values(uniqueData));
   // converting the uniques object in to an array
   return Object.values(uniqueData);
 }
-
-// 1 filter the date ki vahi aaye jahan sirf date (todaydate-7=<ho)
-// 2 after filtering insert them into the object
 
 // average rating of last **7 days**
 export function starGrowthLineLast7Days() {
@@ -50,19 +48,22 @@ export function starGrowthLineLast7Days() {
 
   const uniqueData = {};
 
-  rawFromServer
-    .filter((data) => new Date(data.created_at) >= presentDateMinus7Days)
-    .forEach((filteredData) => {
-      // Making a unqiue id
-      const uniqueId = `${new Date(
-        filteredData.created_at
-      ).getMonth()}-${new Date(filteredData.created_at).getFullYear()}`;
+  // filtering data of last 7 days
+  const filteredData = rawFromServer.filter(
+    (data) => new Date(data.created_at) >= presentDateMinus7Days
+  );
 
-      if (!uniqueData[uniqueId]) uniqueData[uniqueId] = filteredData;
-    });
+  filteredData.forEach((filteredData) => {
+    // Making a unqiue id
+    const uniqueId = `${new Date(filteredData.created_at).getDate()}-${new Date(
+      filteredData.created_at
+    ).getMonth()}`;
 
-  console.log(Object.values(uniqueData));
+    if (!uniqueData[uniqueId]) uniqueData[uniqueId] = filteredData;
+  });
+
   return Object.values(uniqueData);
 }
+console.log(starGrowthLineLast7Days());
 
 export const growthDataAllTime = starGrowthLineAllTime();
