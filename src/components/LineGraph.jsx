@@ -9,7 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import { useState } from "react";
-import { colorArray, filterCombinations } from "../config/customData";
+import { colorArray, filterCombinations } from "../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCombinationFilter,
@@ -55,42 +55,6 @@ function LineGraph() {
               unit={"%"}
             />
           )}
-          {/* <Area
-            stroke="black"
-            name="2 Star"
-            dataKey="avg_2"
-            type={"monotone"}
-            strokeWidth={2}
-            fill="black"
-            unit={"%"}
-          />
-          <Area
-            stroke="violet"
-            name="2 Star"
-            dataKey="avg_3"
-            type={"monotone"}
-            strokeWidth={2}
-            fill="violet"
-            unit={"%"}
-          />
-          <Area
-            stroke="orange"
-            name="4 Star"
-            dataKey="avg_4"
-            type={"monotone"}
-            strokeWidth={2}
-            fill="orange"
-            unit={"%"}
-          />
-          <Area
-            stroke="blue"
-            name="5 Star"
-            dataKey="avg_5"
-            type={"monotone"}
-            strokeWidth={2}
-            fill="blue"
-            unit={"%"}
-          /> */}
           <Legend iconType="circle" />
         </AreaChart>
       </ResponsiveContainer>

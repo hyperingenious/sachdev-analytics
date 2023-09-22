@@ -1,4 +1,4 @@
-import { monthNames, rawFromServer } from "../src/config/customData";
+import { monthNames, rawFromServer } from "../config/app-data";
 
 // average rating "all time" of all stars
 function starGrowthLineAllTime() {
@@ -40,7 +40,7 @@ function starGrowthLineAllTime() {
 }
 
 // average rating of last **7 days**
-export function starGrowthLineLast7Days() {
+function starGrowthLineLast7Days() {
   const presentDateMinus7Days = new Date(
     new Date().setDate(new Date().getDate() - 7)
   );
@@ -52,7 +52,7 @@ export function starGrowthLineLast7Days() {
 
   const acc = [0, 0, 0, 0, 0];
 
-  const growthData = filteredRawData.map((data, index) => {
+  const averageGrowthData7Days = filteredRawData.map((data, index) => {
     if (data.rating !== 0) acc[data.rating - 1]++;
     // making date label for each rating like : Nov 23
     const label = `${new Date(data.created_at).getDate()} ${monthNames[
@@ -71,7 +71,7 @@ export function starGrowthLineLast7Days() {
 
   const uniqueData = {};
 
-  growthData.forEach((filteredData) => {
+  averageGrowthData7Days.forEach((filteredData) => {
     // Making a unqiue id
     const uniqueId = `${new Date(filteredData.created_at).getDate()}-${new Date(
       filteredData.created_at
@@ -81,7 +81,6 @@ export function starGrowthLineLast7Days() {
 
   return Object.values(uniqueData);
 }
-console.log(starGrowthLineLast7Days());
 
 export const growthDataAllTime = starGrowthLineAllTime();
 export const growthDataLast7Days = starGrowthLineLast7Days();
