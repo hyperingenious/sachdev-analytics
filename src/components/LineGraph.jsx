@@ -13,6 +13,7 @@ import { colorArray, filterCombinations } from "../config/customData";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCombinationFilter,
+  changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../redux/filterLineGraphSlice";
 
@@ -26,7 +27,7 @@ function LineGraph() {
       <ResponsiveContainer height={300} width={"100%"}>
         <AreaChart data={dataAsPerTime}>
           <XAxis dataKey={"label"} />
-          <YAxis  unit={"%"} />
+          <YAxis unit={"%"} />
           <CartesianGrid strokeDasharray={4} />
           <Tooltip />
           {combinationFilter &&
@@ -37,8 +38,8 @@ function LineGraph() {
                   dataKey={`avg_${combi}`}
                   type={"monotone"}
                   strokeWidth={2}
-                  fill={colorArray[combi-1]}
-                  stroke={colorArray[combi-1]}
+                  fill={colorArray[combi - 1]}
+                  stroke={colorArray[combi - 1]}
                   unit={"%"}
                 />
               </>
@@ -183,7 +184,11 @@ function LineGraphFilterBar({ dispatch }) {
         </ul>
       </div>
 
-      <button type="button" className="btn btn-danger">
+      <button
+        type="button"
+        className="btn btn-danger"
+        onClick={() => dispatch(changeDataAsPerTime("7-day-time"))}
+      >
         7d
       </button>
 
@@ -191,7 +196,11 @@ function LineGraphFilterBar({ dispatch }) {
         1M
       </button>
 
-      <button type="button" className="btn btn-danger">
+      <button
+        type="button"
+        className="btn btn-danger"
+        onClick={() => dispatch(changeDataAsPerTime("all-time"))}
+      >
         All time
       </button>
     </>
