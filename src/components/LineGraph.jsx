@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { colorArray, filterCombinations } from "../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,16 +16,13 @@ import {
   changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../redux/filterLineGraphSlice";
-import { starPieDataForLast7Days } from "../services/filterDataForPieGraph";
 
 function LineGraph() {
   const dispatch = useDispatch();
   const { combinationFilter, dataAsPerTime, individualStarFilter } =
     useSelector((store) => store.lineGraphFilter);
 
-  useEffect(function () {
-    starPieDataForLast7Days();
-  }, []);
+
 
   return (
     <>
