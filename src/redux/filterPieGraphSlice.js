@@ -10,14 +10,15 @@ const pieGraphFilterSlice = createSlice({
   name: "pieGraphFilterSlice",
   initialState,
   reducers: {
-    changeDataAsPerTime(state, action) {
+    changePieDataAsPerTime(state, action) {
       if (action.payload === "7-day-time") {
         state.timeFilter = action.payload;
         state.dataAsPerTime;
       }
+ 
     },
   },
 });
 
 export default pieGraphFilterSlice.reducer;
-export const { changeDataAsPerTime } = pieGraphFilterSlice.actions;
+export const { changePieDataAsPerTime } = pieGraphFilterSlice.actions;
