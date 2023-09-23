@@ -1,5 +1,4 @@
 export const rawFromServer = [
-  { rating: 0, created_at: "2023-04-20 08:30:15" },
   { rating: 1, created_at: "2023-04-21 14:12:59" },
   { rating: 5, created_at: "2023-04-22 09:45:23" },
   { rating: 1, created_at: "2023-04-23 17:22:07" },

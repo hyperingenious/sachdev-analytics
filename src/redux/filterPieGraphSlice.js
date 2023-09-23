@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   last30DaysPieData,
   last7DaysPieData,
+  lastAllDaysPieData,
 } from "../services/filterDataForPieGraph";
 
 const initialState = {
@@ -22,10 +23,10 @@ const pieGraphFilterSlice = createSlice({
         state.timeFilter = action.payload;
         state.dataAsPerTime = last30DaysPieData;
       }
-      //   if(action.payload === 'all-time'){
-      //     state.timeFilter = action.payload;
-      //     state._____
-      //   }
+      if (action.payload === "all-time") {
+        state.timeFilter = action.payload;
+        state.dataAsPerTime = lastAllDaysPieData;
+      }
     },
   },
 });
