@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { colorArray, filterCombinations } from "../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,15 +16,21 @@ import {
   changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../redux/filterLineGraphSlice";
+import { growthDataLastMonth } from "../services/filterData";
 
 function LineGraph() {
   const dispatch = useDispatch();
   const { combinationFilter, dataAsPerTime, individualStarFilter } =
     useSelector((store) => store.lineGraphFilter);
+
+  useEffect(function () {
+    growthDataLastMonth;
+  }, []);
+
   return (
     <>
       <LineGraphFilterBar dispatch={dispatch} />
-      <ResponsiveContainer height={300} width={"100%"}>
+      <ResponsiveContainer  height={300} width={"100%"}>
         <AreaChart data={dataAsPerTime}>
           <XAxis dataKey={"label"} />
           <YAxis unit={"%"} />
@@ -32,17 +38,16 @@ function LineGraph() {
           <Tooltip />
           {combinationFilter &&
             combinationFilter.map((combi) => (
-              <>
-                <Area
-                  name={`${combi} Star`}
-                  dataKey={`avg_${combi}`}
-                  type={"monotone"}
-                  strokeWidth={2}
-                  fill={colorArray[combi - 1]}
-                  stroke={colorArray[combi - 1]}
-                  unit={"%"}
-                />
-              </>
+              <Area
+                key={combi}
+                name={`${combi} Star`}
+                dataKey={`avg_${combi}`}
+                type={"monotone"}
+                strokeWidth={2}
+                fill={colorArray[combi - 1]}
+                stroke={colorArray[combi - 1]}
+                unit={"%"}
+              />
             ))}
           {individualStarFilter && (
             <Area
@@ -89,13 +94,14 @@ function LineGraphFilterBar({ dispatch }) {
           style={{ top: "1rem", maxHeight: "6rem", overflowY: "scroll" }}
         >
           {filterCombinations.map((filter) => (
-            <>
-              <li onClick={() => dispatch(changeCombinationFilter(filter))}>
-                <a className="dropdown-item" href="#">
-                  {filter}
-                </a>
-              </li>
-            </>
+            <li
+              key={filter}
+              onClick={() => dispatch(changeCombinationFilter(filter))}
+            >
+              <a className="dropdown-item" href="#">
+                {filter}
+              </a>
+            </li>
           ))}
         </ul>
       </div>
@@ -156,7 +162,11 @@ function LineGraphFilterBar({ dispatch }) {
         7d
       </button>
 
-      <button type="button" className="btn btn-danger">
+      <button
+        type="button"
+        className="btn btn-danger"
+        onClick={() => dispatch(changeDataAsPerTime("30-day-time"))}
+      >
         1M
       </button>
 

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { growthDataAllTime, growthDataLast7Days } from "../services/filterData";
+import { growthDataAllTime, growthDataLast7Days, growthDataLastMonth } from "../services/filterData";
 
 const initialState = {
   dataAsPerTime: growthDataAllTime,
@@ -20,6 +20,10 @@ const lineGraphFilterSlice = createSlice({
       if (action.payload === "7-day-time") {
         state.timeFilter = action.payload;
         state.dataAsPerTime = growthDataLast7Days;
+      }
+      if (action.payload === "30-day-time") {
+        state.timeFilter = action.payload;
+        state.dataAsPerTime = growthDataLastMonth;
       }
     },
     changeCombinationFilter(state, action) {

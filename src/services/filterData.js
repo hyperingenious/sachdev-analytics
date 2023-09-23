@@ -82,5 +82,61 @@ function starGrowthLineLast7Days() {
   return Object.values(uniqueData);
 }
 
+// average rating of last MONTH
+function starGrowthLineLastMonth() {
+  // Date of last 30th day
+  const presentDateMinus30Days = new Date(
+    new Date().setDate(new Date().getDate() - 30)
+  );
+
+  const filteredRawData = rawFromServer.filter(
+    (piece) => new Date(piece.created_at) > presentDateMinus30Days
+  );
+
+  const acc = [0, 0, 0, 0, 0];
+
+  const averageGrowthData30Days = filteredRawData.map((data, index) => {
+    if (data.rating !== 0) acc[data.rating - 1]++;
+    // making date label for each rating like : Nov 23
+    const label = `${new Date(data.created_at).getDate()} ${monthNames[
+      new Date(data.created_at).getMonth()
+    ].substring(0, 3)}`;
+    return {
+      ...data,
+      label,
+      avg_1: ((acc[0] / (index + 1)) * 100).toFixed(0),
+      avg_2: ((acc[1] / (index + 1)) * 100).toFixed(0),
+      avg_3: ((acc[2] / (index + 1)) * 100).toFixed(0),
+      avg_4: ((acc[3] / (index + 1)) * 100).toFixed(0),
+      avg_5: ((acc[4] / (index + 1)) * 100).toFixed(0),
+    };
+  });
+
+  const uniqueData = {};
+
+  averageGrowthData30Days.forEach((item) => {
+    const uniqueId = `${new Date(item.created_at).getDate()}-${new Date(
+      item.created_at
+    ).getMonth()}-${new Date(item.created_at).getFullYear()}`;
+    if (!uniqueData[uniqueId]) uniqueData[uniqueId] = item;
+  });
+
+  const uniqueArrayByData = Object.values(uniqueData);
+  const finalLastMonthData = [];
+  const moduleValueForIteration =
+    (uniqueArrayByData.length - (uniqueArrayByData.length % 5)) / 5;
+  let moduleAccumulator = moduleValueForIteration;
+
+  uniqueArrayByData.forEach((arr, index) => {
+    if (index === moduleAccumulator - 1) {
+      finalLastMonthData.push(arr);
+      moduleAccumulator += moduleValueForIteration;
+    }
+  });
+
+  return finalLastMonthData;
+}
+
 export const growthDataAllTime = starGrowthLineAllTime();
 export const growthDataLast7Days = starGrowthLineLast7Days();
+export const growthDataLastMonth = starGrowthLineLastMonth();
