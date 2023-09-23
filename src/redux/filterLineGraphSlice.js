@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { growthDataAllTime, growthDataLast7Days, growthDataLastMonth } from "../services/filterData";
+import { growthDataAllTime, growthDataLast7Days, growthDataLastMonth } from "../services/filterDataForLineGraph";
 
 const initialState = {
   dataAsPerTime: growthDataAllTime,
