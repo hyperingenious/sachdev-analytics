@@ -30,7 +30,7 @@ function LineGraph() {
   return (
     <>
       <LineGraphFilterBar dispatch={dispatch} />
-      <ResponsiveContainer  height={300} width={"100%"}>
+      <ResponsiveContainer height={300} width={"100%"}>
         <AreaChart data={dataAsPerTime}>
           <XAxis dataKey={"label"} />
           <YAxis unit={"%"} />
@@ -72,26 +72,19 @@ function LineGraphFilterBar({ dispatch }) {
   const [toggle2, setToggle2] = useState(false);
   return (
     <>
-      <div className="btn-group">
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => setToggle((toggle) => !toggle)}
-        >
-          Combinations
-        </button>
+      <div className="dropdown">
         <button
           onClick={() => setToggle((toggle) => !toggle)}
+          className="btn btn-secondary dropdown-toggle"
           type="button"
-          className="btn btn-danger dropdown-toggle dropdown-toggle-split"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <span className="visually-hidden">Toggle Dropdown</span>
-        </button>{" "}
+          Combinations
+        </button>
         <ul
-          className={`dropdown-menu ${toggle && "d-block"} position-absolute`}
-          style={{ top: "1rem", maxHeight: "6rem", overflowY: "scroll" }}
+          className={`dropdown-menu ${toggle && "d-block"}`}
+          style={{ maxHeight: "6rem", overflowY: "scroll" }}
         >
           {filterCombinations.map((filter) => (
             <li
@@ -105,27 +98,17 @@ function LineGraphFilterBar({ dispatch }) {
           ))}
         </ul>
       </div>
-      <div className="btn-group">
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => setToggle2((toggle) => !toggle)}
-        >
-          Star
-        </button>
+      <div className="dropdown d-inline">
         <button
           onClick={() => setToggle2((toggle) => !toggle)}
+          className="btn btn-secondary dropdown-toggle"
           type="button"
-          className="btn btn-danger dropdown-toggle dropdown-toggle-split"
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          <span className="visually-hidden">Toggle Dropdown</span>
-        </button>{" "}
-        <ul
-          className={`dropdown-menu ${toggle2 && "d-block"} position-absolute`}
-          style={{ top: "1rem", maxHeight: "6rem", overflowY: "scroll" }}
-        >
+          Star{" "}
+        </button>
+        <ul className={`dropdown-menu ${toggle2 && "d-block"}`}>
           <li onClick={() => dispatch(changeIndividualStarFilter(1))}>
             <a className="dropdown-item" href="#">
               1
