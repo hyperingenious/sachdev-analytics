@@ -8,11 +8,11 @@ export function starPieDataForLast7Days() {
   );
 
   const finalPieData7Days = [
-    { name: "Star 1", value: 0 },
-    { name: "Star 2", value: 0 },
-    { name: "Star 3", value: 0 },
-    { name: "Star 4", value: 0 },
-    { name: "Star 5", value: 0 },
+    { name: "1 Star", value: 0 },
+    { name: "2 Star", value: 0 },
+    { name: "3 Star", value: 0 },
+    { name: "4 Star", value: 0 },
+    { name: "5 Star", value: 0 },
   ];
 
   fd.reduce((acc, current) => {

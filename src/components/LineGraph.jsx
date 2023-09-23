@@ -16,7 +16,7 @@ import {
   changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../redux/filterLineGraphSlice";
-import { starDataForLast7Days } from "../services/filterDataForPieGraph";
+import { starPieDataForLast7Days } from "../services/filterDataForPieGraph";
 
 function LineGraph() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function LineGraph() {
     useSelector((store) => store.lineGraphFilter);
 
   useEffect(function () {
-    starDataForLast7Days();
+    starPieDataForLast7Days();
   }, []);
 
   return (

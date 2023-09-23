@@ -1,24 +1,8 @@
+import { useSelector } from "react-redux";
 import { PieChart, Pie, Legend, Tooltip, Cell } from "recharts";
 
 function PieGraph() {
-  const data01 = [
-    {
-      name: "Group A",
-      value: 400,
-    },
-    {
-      name: "Group B",
-      value: 300,
-    },
-    {
-      name: "Group C",
-      value: 300,
-    },
-    {
-      name: "Group D",
-      value: 200,
-    },
-  ];
+    const {dataAsPerTime}= useSelector(store=> store.pieGraphFilter)
 
   // Define an array of colors for sections
   const sectionColors = [
@@ -34,7 +18,7 @@ function PieGraph() {
     <PieChart width={730} height={300}>
       {/* First Pie Chart */}
       <Pie
-        data={data01}
+        data={dataAsPerTime}
         dataKey="value"
         nameKey="name"
         cx="50%"
@@ -42,7 +26,7 @@ function PieGraph() {
         outerRadius={120}
         innerRadius={70}
       >
-        {data01.map((entry, index) => (
+        {dataAsPerTime.map((entry, index) => (
           <Cell
             key={`cell-${index}`}
             fill={sectionColors[index % sectionColors.length]}
