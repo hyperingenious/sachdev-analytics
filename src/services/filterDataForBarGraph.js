@@ -7,6 +7,7 @@ export function starGrowthBarLast5Months() {
   const lastMonthData = rawFromServer.filter(
     (data) => new Date(data.created_at) > lastMonthStartingDate
   );
+  console.log(lastMonthData);
 
   const lastSecondMonthStartingDate = new Date(
     new Date().setDate(
@@ -53,14 +54,6 @@ export function starGrowthBarLast5Months() {
       new Date(data.created_at) >= lastFifthMonthStartingDate &&
       new Date(data.created_at) < lastFourthMonthStartingDate
   );
-
-  console.log([
-    lastMonthData,
-    lastSecondMonthData,
-    lastThirdMonthData,
-    lastFourthMonthData,
-    lastFifthMonthData,
-  ]);
 
   return [
     lastMonthData,
