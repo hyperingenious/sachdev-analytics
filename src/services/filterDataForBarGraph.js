@@ -108,5 +108,8 @@ export function starGrowthBarLast5Months() {
     }),
   ];
 
+  console.log(theFinalArray); // check the console..
   return theFinalArray;
 }
+
+export const growthDataHorizontalBarGraph5Months = starGrowthBarLast5Months();

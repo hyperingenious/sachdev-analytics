@@ -16,7 +16,7 @@ export const rawFromServer = [
   { rating: 1, created_at: "2023-06-25 05:43:14" },
   { rating: 4, created_at: "2023-06-26 18:02:03" },
   { rating: 3, created_at: "2023-06-27 22:11:49" },
-  
+
   { rating: 5, created_at: "2023-07-01 09:11:28" },
   { rating: 3, created_at: "2023-07-02 06:27:47" },
   { rating: 2, created_at: "2023-07-03 19:45:13" },
@@ -113,6 +113,9 @@ export const rawFromServer = [
   { rating: 4, created_at: "2023-09-22 10:55:23" },
 ];
 
+/**
+ * Array of 26 the combinations of 1, 2, 3, 4 and 5 excluding all the one digit combinations
+ */
 export const filterCombinations = [
   "1,2",
   "1,3",
@@ -142,6 +145,9 @@ export const filterCombinations = [
   "1,2,3,4,5",
 ];
 
+/**
+ * Array containing names of all the 12 months in seqence
+ */
 export const monthNames = [
   "January",
   "February",
@@ -157,4 +163,7 @@ export const monthNames = [
   "December",
 ];
 
+/**
+ * An array which contains 5 color names in the form of string
+ */
 export const colorArray = ["red", "blue", "cyan", "khaki", "orange"];
