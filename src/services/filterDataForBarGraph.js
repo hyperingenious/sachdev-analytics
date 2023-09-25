@@ -1,11 +1,13 @@
 import { rawFromServer } from "../config/app-data";
 
 export function starGrowthBarLast5Months() {
-  const accLastMonth = [0, 0, 0, 0, 0];
-  const accLastSecondMonth = [0, 0, 0, 0, 0];
-  const accLastThirdMonth = [0, 0, 0, 0, 0];
-  const accLastFourthMonth = [0, 0, 0, 0, 0];
-  const accLastFifthMonth = [0, 0, 0, 0, 0];
+  const initializeAccArray = () => [0, 0, 0, 0, 0];
+
+  const accLastMonth = initializeAccArray();
+  const accLastSecondMonth = initializeAccArray();
+  const accLastThirdMonth = initializeAccArray();
+  const accLastFourthMonth = initializeAccArray();
+  const accLastFifthMonth = initializeAccArray();
 
   // Last Month
   const lastMonthStartingDate = new Date(
@@ -88,11 +90,23 @@ export function starGrowthBarLast5Months() {
       return acc;
     }, accLastFifthMonth);
 
-  return [
-    lastMonthData,
-    lastSecondMonthData,
-    lastThirdMonthData,
-    lastFourthMonthData,
-    lastFifthMonthData,
+  const theFinalArray = [
+    lastMonthData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    }),
+    lastSecondMonthData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    }),
+    lastThirdMonthData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    }),
+    lastFourthMonthData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    }),
+    lastFifthMonthData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    }),
   ];
+
+  return theFinalArray;
 }
