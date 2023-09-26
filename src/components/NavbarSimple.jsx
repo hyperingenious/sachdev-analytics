@@ -4,7 +4,7 @@ import {
   IconLogout,
   IconDashboard,
 } from "@tabler/icons-react";
-import classes from "../assets/styles/Navbar.module.css";
+import classes from "../assets/styles/NavbarSimple.module.css";
 import { Link } from "react-router-dom";
 
 const data = [{ link: "/dashboard", label: "Dashboard", icon: IconDashboard }];

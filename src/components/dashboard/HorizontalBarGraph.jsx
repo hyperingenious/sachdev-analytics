@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Bar, BarChart, Tooltip, Legend, XAxis, YAxis } from "recharts";
-import { changeHorizontalBarGraphMonth } from "../redux/filterHorizontalBarGraphSlice";
+import { changeHorizontalBarGraphMonth } from "../../redux/filterHorizontalBarGraphSlice";
 
 function HorizontalBarGraph() {
   const [toggle, setToggle] = useState(false);

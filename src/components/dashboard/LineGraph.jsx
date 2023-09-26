@@ -9,13 +9,13 @@ import {
   YAxis,
 } from "recharts";
 import {  useState } from "react";
-import { colorArray, filterCombinations } from "../config/app-data";
+import { colorArray, filterCombinations } from "../../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeCombinationFilter,
   changeDataAsPerTime,
   changeIndividualStarFilter,
-} from "../redux/filterLineGraphSlice";
+} from "../../redux/filterLineGraphSlice";
 
 function LineGraph() {
   const dispatch = useDispatch();

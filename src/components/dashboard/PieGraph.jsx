@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PieChart, Pie, Legend, Tooltip, Cell } from "recharts";
-import { changePieDataAsPerTime } from "../redux/filterPieGraphSlice";
+import { changePieDataAsPerTime } from "../../redux/filterPieGraphSlice";
 
 function PieGraph() {
   const [toggle, setToggle] = useState(false);
