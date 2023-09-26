@@ -9,106 +9,85 @@ export function starGrowthBarLast5Months() {
   const accLastFourthMonth = initializeAccArray();
   const accLastFifthMonth = initializeAccArray();
 
-  // Last Month
+  // We have to calculate this one first cuz calculating this earlier is little tricky
   const lastMonthStartingDate = new Date(
     new Date().setDate(new Date().getDate() - new Date().getDate())
   );
-  const lastMonthData = rawFromServer
-    .filter((data) => new Date(data.created_at) > lastMonthStartingDate)
-    .reduce((acc, curr) => {
-      acc[curr.rating - 1]++;
-      return acc;
-    }, accLastMonth);
 
-  // Last Second Month
-  const lastSecondMonthStartingDate = new Date(
-    new Date().setDate(
-      lastMonthStartingDate.getDate() - lastMonthStartingDate.getDate() - 29
-    )
-  );
-  const lastSecondMonthData = rawFromServer
-    .filter(
-      (data) =>
-        new Date(data.created_at) >= lastSecondMonthStartingDate &&
-        new Date(data.created_at) < lastMonthStartingDate
-    )
-    .reduce((acc, curr) => {
-      acc[curr.rating - 1]++;
-      return acc;
-    }, accLastSecondMonth);
+  // takes the array of filtered month specific data, converts into presentable data
+  function mapData(timeData) {
+    return timeData.map((data, index) => {
+      return { name: `${index + 1} Star`, rating: data };
+    });
+  }
 
-  // Last Third Month
-  const lastThirdMonthStartingDate = new Date(
-    new Date().setDate(
-      lastSecondMonthStartingDate.getDate() -
+  function getMonthStartingDate(lastMonthNumber) {
+    return new Date(
+      new Date().setDate(
         lastMonthStartingDate.getDate() -
-        29
-    )
-  );
-  const lastThirdMonthData = rawFromServer
-    .filter(
-      (data) =>
-        new Date(data.created_at) >= lastThirdMonthStartingDate &&
-        new Date(data.created_at) < lastSecondMonthStartingDate
-    )
-    .reduce((acc, curr) => {
-      acc[curr.rating - 1]++;
-      return acc;
-    }, accLastThirdMonth);
+          lastMonthStartingDate.getDate() -
+          (lastMonthNumber - 1) * 30
+      )
+    );
+  }
 
-  // Last fourth Month
-  const lastFourthMonthStartingDate = new Date(
-    new Date().setDate(
-      lastMonthStartingDate.getDate() - lastMonthStartingDate.getDate() - 90
-    )
-  );
-  const lastFourthMonthData = rawFromServer
-    .filter(
-      (data) =>
-        new Date(data.created_at) >= lastFourthMonthStartingDate &&
-        new Date(data.created_at) < lastThirdMonthStartingDate
-    )
-    .reduce((acc, curr) => {
-      acc[curr.rating - 1]++;
-      return acc;
-    }, accLastFourthMonth);
+  function reduceAndFilter(ratingAcc, startDate, endDate) {
+    return rawFromServer
+      .filter((data) =>
+        endDate
+          ? new Date(data.created_at) >= startDate &&
+            new Date(data.created_at) < endDate
+          : new Date(data.created_at) >= startDate
+      )
+      .reduce((acc, curr) => {
+        acc[curr.rating - 1]++;
+        return acc;
+      }, ratingAcc);
+  }
 
-  // Last Fifth Month
-  const lastFifthMonthStartingDate = new Date(
-    new Date().setDate(
-      lastMonthStartingDate.getDate() - lastMonthStartingDate.getDate() - 120
-    )
+  // Last Month
+  const lastMonthData = reduceAndFilter(accLastMonth, lastMonthStartingDate);
+
+  // Last 2nd Month
+  const lastSecondMonthStartingDate = getMonthStartingDate(2);
+  const lastSecondMonthData = reduceAndFilter(
+    accLastSecondMonth,
+    lastSecondMonthStartingDate,
+    lastMonthStartingDate
   );
-  const lastFifthMonthData = rawFromServer
-    .filter(
-      (data) =>
-        new Date(data.created_at) >= lastFifthMonthStartingDate &&
-        new Date(data.created_at) < lastFourthMonthStartingDate
-    )
-    .reduce((acc, curr) => {
-      acc[curr.rating - 1]++;
-      return acc;
-    }, accLastFifthMonth);
+
+  // Last 3rd Month
+  const lastThirdMonthStartingDate = getMonthStartingDate(3);
+  const lastThirdMonthData = reduceAndFilter(
+    accLastThirdMonth,
+    lastThirdMonthStartingDate,
+    lastSecondMonthStartingDate
+  );
+
+  // Last 4th Month
+  const lastFourthMonthStartingDate = getMonthStartingDate(4);
+  const lastFourthMonthData = reduceAndFilter(
+    accLastFourthMonth,
+    lastFourthMonthStartingDate,
+    lastThirdMonthStartingDate
+  );
+
+  // Last 5th Month
+  const lastFifthMonthStartingDate = getMonthStartingDate(5);
+  const lastFifthMonthData = reduceAndFilter(
+    accLastFifthMonth,
+    lastFifthMonthStartingDate,
+    lastFourthMonthStartingDate
+  );
 
   const theFinalArray = [
-    lastMonthData.map((data, index) => {
-      return { name: `${index + 1} Star`, rating: data };
-    }),
-    lastSecondMonthData.map((data, index) => {
-      return { name: `${index + 1} Star`, rating: data };
-    }),
-    lastThirdMonthData.map((data, index) => {
-      return { name: `${index + 1} Star`, rating: data };
-    }),
-    lastFourthMonthData.map((data, index) => {
-      return { name: `${index + 1} Star`, rating: data };
-    }),
-    lastFifthMonthData.map((data, index) => {
-      return { name: `${index + 1} Star`, rating: data };
-    }),
+    mapData(lastMonthData),
+    mapData(lastSecondMonthData),
+    mapData(lastThirdMonthData),
+    mapData(lastFourthMonthData),
+    mapData(lastFifthMonthData),
   ];
 
-  console.log(theFinalArray); // check the console..
   return theFinalArray;
 }
 
