@@ -1,6 +1,7 @@
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell as MantineAppShell, Burger } from "@mantine/core";
 import NavbarSimple from "../components/NavbarSimple";
+import { Outlet } from "react-router-dom";
 
 export default function AppShell() {
   const [opened, { toggle }] = useDisclosure();
@@ -20,7 +21,9 @@ export default function AppShell() {
         <NavbarSimple />
       </MantineAppShell.Navbar>
 
-      <MantineAppShell.Main>Main</MantineAppShell.Main>
+      <MantineAppShell.Main>
+        <Outlet />
+      </MantineAppShell.Main>
     </MantineAppShell>
   );
 }
