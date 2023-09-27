@@ -1,7 +1,7 @@
-import { Button, Menu, rem, useMantineTheme } from "@mantine/core";
-import { IconChevronDown, IconGraph, IconStar } from "@tabler/icons-react";
+import { Button, Menu, Text, rem, useMantineTheme } from "@mantine/core";
+import { IconChevronDown, IconGraph } from "@tabler/icons-react";
 
-export function Dropdown({ name, dropdownOptions }) {
+export function Dropdown({ name, dropdownOptions, onClick }) {
   const theme = useMantineTheme();
   return (
     <Menu
@@ -20,7 +20,7 @@ export function Dropdown({ name, dropdownOptions }) {
           }
           pr={12}
         >
-          {name}{" "}
+          <Text>{name}</Text>
         </Button>
       </Menu.Target>
       <Menu.Dropdown
@@ -31,6 +31,7 @@ export function Dropdown({ name, dropdownOptions }) {
       >
         {dropdownOptions.map((data) => (
           <Menu.Item
+            onClick={() => onClick(data)}
             key={data}
             leftSection={
               <IconGraph

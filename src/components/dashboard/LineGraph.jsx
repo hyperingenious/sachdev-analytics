@@ -17,6 +17,7 @@ import {
   changeIndividualStarFilter,
 } from "../../redux/filterLineGraphSlice";
 import { Dropdown } from "../Dropdown";
+import { SegmentedControl } from "@mantine/core";
 
 function LineGraph() {
   const dispatch = useDispatch();
@@ -64,75 +65,24 @@ function LineGraph() {
 }
 
 function LineGraphFilterBar({ dispatch }) {
-  const [toggle, setToggle] = useState(false);
-  const [toggle2, setToggle2] = useState(false);
   return (
     <>
-      <Dropdown name={"Combinations"} dropdownOptions={filterCombinations} />
-      <div className="dropdown">
-        <button
-          onClick={() => setToggle((toggle) => !toggle)}
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Combinations
-        </button>
-        <ul
-          className={`dropdown-menu ${toggle && "d-block"}`}
-          style={{ maxHeight: "6rem", overflowY: "scroll" }}
-        >
-          {filterCombinations.map((filter) => (
-            <li
-              key={filter}
-              onClick={() => dispatch(changeCombinationFilter(filter))}
-            >
-              <a className="dropdown-item" href="#">
-                {filter}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="dropdown d-inline">
-        <button
-          onClick={() => setToggle2((toggle) => !toggle)}
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Star{" "}
-        </button>
-        <ul className={`dropdown-menu ${toggle2 && "d-block"}`}>
-          <li onClick={() => dispatch(changeIndividualStarFilter(1))}>
-            <a className="dropdown-item" href="#">
-              1
-            </a>
-          </li>
-          <li onClick={() => dispatch(changeIndividualStarFilter(2))}>
-            <a className="dropdown-item" href="#">
-              2
-            </a>
-          </li>
-          <li onClick={() => dispatch(changeIndividualStarFilter(3))}>
-            <a className="dropdown-item" href="#">
-              3
-            </a>
-          </li>
-          <li onClick={() => dispatch(changeIndividualStarFilter(4))}>
-            <a className="dropdown-item" href="#">
-              4
-            </a>
-          </li>
-          <li onClick={() => dispatch(changeIndividualStarFilter(5))}>
-            <a className="dropdown-item" href="#">
-              5
-            </a>
-          </li>
-        </ul>
-      </div>
+      <Dropdown
+        name={"Combinations"}
+        dropdownOptions={filterCombinations}
+        onClick={(arg) => dispatch(changeCombinationFilter(arg))}
+      />
+      <Dropdown
+        name={"Star"}
+        dropdownOptions={[1, 2, 3, 4, 5]}
+        onClick={(arg) => dispatch(changeIndividualStarFilter(arg))}
+      />
+
+      <SegmentedControl
+        fullWidth
+        radius="md"
+        data={["7D", "1M", "All time"]}
+      />
 
       <button
         type="button"
