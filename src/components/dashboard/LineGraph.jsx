@@ -8,7 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import {  useState } from "react";
+import { useState } from "react";
 import { colorArray, filterCombinations } from "../../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,13 +16,12 @@ import {
   changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../../redux/filterLineGraphSlice";
+import { Dropdown } from "../Dropdown";
 
 function LineGraph() {
   const dispatch = useDispatch();
   const { combinationFilter, dataAsPerTime, individualStarFilter } =
     useSelector((store) => store.lineGraphFilter);
-
-
 
   return (
     <>
@@ -69,6 +68,7 @@ function LineGraphFilterBar({ dispatch }) {
   const [toggle2, setToggle2] = useState(false);
   return (
     <>
+      <Dropdown name={"Combinations"} dropdownOptions={filterCombinations} />
       <div className="dropdown">
         <button
           onClick={() => setToggle((toggle) => !toggle)}
