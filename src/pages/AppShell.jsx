@@ -1,15 +1,21 @@
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell as MantineAppShell, Burger } from "@mantine/core";
 import NavbarSimple from "../components/NavbarSimple";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function AppShell() {
   const [opened, { toggle }] = useDisclosure();
+  const navigate = useNavigate();
+
+useEffect(function(){
+  navigate('/dashboard')
+},[navigate])
 
   return (
     <MantineAppShell
-      header={{ height: 60 }}
-      navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
+      header={{ height: 40 }}
+      navbar={{ width: 230, breakpoint: "sm", collapsed: { mobile: !opened } }}
       padding="md"
     >
       <MantineAppShell.Header>

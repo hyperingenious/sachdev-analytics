@@ -9,7 +9,13 @@ import { MantineProvider } from "@mantine/core";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {" "}
-    <MantineProvider>
+    <MantineProvider
+      theme={{
+        fontFamily: 'Verdana, sans-serif',
+        fontFamilyMonospace: 'Monaco, Courier, monospace',
+        headings: { fontFamily: 'Greycliff CF, sans-serif' },
+      }}
+    >
       <Provider store={store}>
         <App />
       </Provider>

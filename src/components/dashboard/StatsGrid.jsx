@@ -19,8 +19,8 @@ const icons = {
 const data = [
   { title: 'Revenue', icon: 'receipt', value: '13,456', diff: 34 },
   { title: 'Profit', icon: 'coin', value: '4,145', diff: -13 },
-  { title: 'Coupons usage', icon: 'discount', value: '745', diff: 18 },
-  { title: 'New customers', icon: 'user', value: '188', diff: -30 },
+  { title: 'Coupons', icon: 'discount', value: '745', diff: 18 },
+  { title: 'New', icon: 'user', value: '188', diff: -30 },
 ] 
 
 export default function StatsGrid() {
@@ -46,7 +46,7 @@ export default function StatsGrid() {
         </Group>
 
         <Text fz="xs" c="dimmed" mt={7}>
-          Compared to previous month
+          since last month
         </Text>
       </Paper>
     );
