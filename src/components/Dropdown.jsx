@@ -7,13 +7,10 @@ export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
     <Menu
       transitionProps={{ transition: "pop-top-right" }}
       position="top-end"
-      width={220}
-      withinPortal
+      width={120}
     >
       <Menu.Target>
         <Button
-          size="md"
-          radius={"md"}
           variant="default"
           color="rgba(255, 255, 255, 1)"
           // style={{ boxShadow: "var(--mantine-shadow-md)" }}

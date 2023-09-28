@@ -1,10 +1,8 @@
 import { SegmentedControl } from "@mantine/core";
 
-function SegmentedButton({ size = "md", radius = "md", onChange }) {
+function SegmentedButton({ onChange }) {
   return (
     <SegmentedControl
-      size={size}
-      radius={radius}
       onChange={onChange} // format:  (arg) => dispatch(changeDataAsPerTime(arg))
       data={[
         { label: "7D", value: "7-day-time" },

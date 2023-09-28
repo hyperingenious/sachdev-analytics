@@ -1,12 +1,16 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { PieChart, Pie, Legend, Tooltip, Cell } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Legend,
+  Tooltip,
+  Cell,
+  ResponsiveContainer,
+} from "recharts";
 import { changePieDataAsPerTime } from "../../redux/filterPieGraphSlice";
 import { Dropdown } from "../Dropdown";
-import { changeDataAsPerTime } from "../../redux/filterLineGraphSlice";
 
 function PieGraph() {
-  const [toggle, setToggle] = useState(false);
   const { dataAsPerTime, timeFilter } = useSelector(
     (store) => store.pieGraphFilter
   );
@@ -16,7 +20,11 @@ function PieGraph() {
   const sectionColors = ["#6d28d9", "#be123c", "#0088FE", "#059669", "#eab308"];
 
   return (
-    <>
+    <div
+      style={{
+        marginTop: "var(--mantine-spacing-lg)",
+      }}
+    >
       <Dropdown
         name={"Data"}
         dropdownOptions={["7 Days", "Last Month", "All time"]}
@@ -51,28 +59,31 @@ function PieGraph() {
           </li>
         </ul>
       </div> */}
-      <PieChart width={730} height={300}>
-        {/* First Pie Chart */}
-        <Pie
-          data={dataAsPerTime}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          outerRadius={120}
-          innerRadius={70}
-        >
-          {dataAsPerTime.map((entry, index) => (
-            <Cell
-              key={`cell-${index}`}
-              fill={sectionColors[index % sectionColors.length]}
-            />
-          ))}
-        </Pie>
-        <Tooltip />
-        <Legend iconType="circle" />
-      </PieChart>
-    </>
+      <ResponsiveContainer minWidth={270} width={"70%"} height={230}>
+        <PieChart width={400} height={210}>
+          {/* First Pie Chart */}
+          {/* <ResponsiveContainer > */}
+          <Pie
+            data={dataAsPerTime}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={90}
+            innerRadius={50}
+          >
+            {dataAsPerTime.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={sectionColors[index % sectionColors.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend iconType="circle" />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 

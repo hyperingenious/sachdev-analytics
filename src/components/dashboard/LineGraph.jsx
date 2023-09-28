@@ -26,7 +26,7 @@ function LineGraph() {
   return (
     <div style={{ marginTop: "var(--mantine-spacing-xl)" }}>
       <LineGraphFilterBar dispatch={dispatch} />
-      <ResponsiveContainer height={300} width={"100%"}>
+      <ResponsiveContainer height={200} width={"100%"}>
         <AreaChart data={dataAsPerTime}>
           <XAxis dataKey={"label"} />
           <YAxis unit={"%"} />
@@ -85,8 +85,7 @@ function LineGraphFilterBar({ dispatch }) {
         onClick={(arg) => dispatch(changeIndividualStarFilter(arg))}
       />
       <SegmentedControl
-        size="md"
-        radius="md"
+       
         onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
         data={[
           { label: "7D", value: "7-day-time" },
