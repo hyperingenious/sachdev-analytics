@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { growthDataAllTime, growthDataLast7Days, growthDataLastMonth } from "../services/dashboard/filterDataForLineGraph";
+import { growthDataAllTime, growthDataLast7Days, growthDataLastMonth } from "../../services/dashboard/filterDataForLineGraph";
 
 const initialState = {
   dataAsPerTime: growthDataAllTime,
   timeFilter: "all-time",
-  combinationFilter: [1, 2, 3, 4, 5], //(default is false) 26 combinations total of 1,2,3,4,5
+  combinationFilter: [1, 2, 3, 4, 5], //total  26 combinations of 1,2,3,4,5 excluding all one-digit
   individualStarFilter: false, //(default is false) 1 | 2 | 3 | 4 | 5
 };
 

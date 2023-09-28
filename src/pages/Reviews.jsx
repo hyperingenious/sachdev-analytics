@@ -1,4 +1,3 @@
-import { IconStar } from "@tabler/icons-react";
 import { Dropdown } from "../components/Dropdown";
 import SegmentedButton from "../components/SegmentedButton";
 
@@ -13,8 +12,7 @@ function Reviews() {
         }}
       >
         <Dropdown
-          icon={IconStar}
-          name={"Star"}
+          name={"Rating"}
           dropdownOptions={[1, 2, 3, 4, 5]}
         />
         <SegmentedButton

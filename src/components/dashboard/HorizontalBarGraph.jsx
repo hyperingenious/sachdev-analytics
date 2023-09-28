@@ -8,7 +8,7 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts";
-import { changeHorizontalBarGraphMonth } from "../../redux/filterHorizontalBarGraphSlice";
+import { changeHorizontalBarGraphMonth } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
 import { Dropdown } from "../Dropdown";
 
 function HorizontalBarGraph() {

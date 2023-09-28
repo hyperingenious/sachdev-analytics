@@ -14,7 +14,7 @@ import {
   changeCombinationFilter,
   changeDataAsPerTime,
   changeIndividualStarFilter,
-} from "../../redux/filterLineGraphSlice";
+} from "../../redux/dashboard/filterLineGraphSlice";
 import { Dropdown } from "../Dropdown";
 import SegmentedButton from "../SegmentedButton";
 

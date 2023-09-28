@@ -7,7 +7,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
-import { changePieDataAsPerTime } from "../../redux/filterPieGraphSlice";
+import { changePieDataAsPerTime } from "../../redux/dashboard/filterPieGraphSlice";
 import { Dropdown } from "../Dropdown";
 
 function PieGraph() {

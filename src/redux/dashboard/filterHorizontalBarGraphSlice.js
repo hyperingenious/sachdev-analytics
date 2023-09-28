@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getLast5Month } from "../helpers/helper";
-import { growthDataHorizontalBarGraph5Months } from "../services/dashboard/filterDataForBarGraph";
+import { getLast5Month } from "../../helpers/helper";
+import { growthDataHorizontalBarGraph5Months } from "../../services/dashboard/filterDataForBarGraph";
 
 const initialState = {
   last5Months: getLast5Month(),

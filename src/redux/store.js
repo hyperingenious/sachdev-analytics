@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filterLineGraphSlice from "./filterLineGraphSlice";
-import filterPieGraphSlice from "./filterPieGraphSlice";
-import filterHorizontalBarGraphSlice from "./filterHorizontalBarGraphSlice";
+import filterLineGraphSlice from "./dashboard/filterLineGraphSlice";
+import filterPieGraphSlice from "./dashboard/filterPieGraphSlice";
+import filterHorizontalBarGraphSlice from "./dashboard/filterHorizontalBarGraphSlice";
 
 const store = configureStore({
   reducer: {

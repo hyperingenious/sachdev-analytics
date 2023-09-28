@@ -3,7 +3,7 @@ import {
   last30DaysPieData,
   last7DaysPieData,
   lastAllDaysPieData,
-} from "../services/dashboard/filterDataForPieGraph";
+} from "../../services/dashboard/filterDataForPieGraph";
 
 const initialState = {
   dataAsPerTime: last7DaysPieData,
