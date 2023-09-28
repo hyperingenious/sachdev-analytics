@@ -1,7 +1,7 @@
 import { Button, Menu, Text, rem, useMantineTheme } from "@mantine/core";
 import { IconChevronDown, IconGraph } from "@tabler/icons-react";
 
-export function Dropdown({ name, dropdownOptions, onClick }) {
+export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
   const theme = useMantineTheme();
   return (
     <Menu
@@ -12,6 +12,11 @@ export function Dropdown({ name, dropdownOptions, onClick }) {
     >
       <Menu.Target>
         <Button
+          size="md"
+          radius={"md"}
+          variant="default"
+          color="rgba(255, 255, 255, 1)"
+          // style={{ boxShadow: "var(--mantine-shadow-md)" }}
           rightSection={
             <IconChevronDown
               style={{ width: rem(18), height: rem(18) }}
@@ -29,14 +34,14 @@ export function Dropdown({ name, dropdownOptions, onClick }) {
           overflowY: "scroll",
         }}
       >
-        {dropdownOptions.map((data) => (
+        {dropdownOptions.map((data, index) => (
           <Menu.Item
-            onClick={() => onClick(data)}
+            onClick={() => onClick(argOptions[index])}
             key={data}
             leftSection={
               <IconGraph
                 style={{ width: rem(16), height: rem(16) }}
-                color={theme.colors.blue[6]}
+                color={theme.colors.gray[5]}
                 stroke={1.5}
               />
             }

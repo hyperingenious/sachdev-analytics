@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { PieChart, Pie, Legend, Tooltip, Cell } from "recharts";
 import { changePieDataAsPerTime } from "../../redux/filterPieGraphSlice";
+import { Dropdown } from "../Dropdown";
+import { changeDataAsPerTime } from "../../redux/filterLineGraphSlice";
 
 function PieGraph() {
   const [toggle, setToggle] = useState(false);
@@ -15,7 +17,13 @@ function PieGraph() {
 
   return (
     <>
-      <div className="dropdown">
+      <Dropdown
+        name={"Data"}
+        dropdownOptions={["7 Days", "Last Month", "All time"]}
+        argOptions={["7-day-time", "30-day-time", "all-time"]}
+        onClick={(arg) => dispatch(changePieDataAsPerTime(arg))}
+      />
+      {/* <div className="dropdown">
         <button
           onClick={() => setToggle((toggle) => !toggle)}
           className="btn btn-secondary dropdown-toggle"
@@ -42,7 +50,7 @@ function PieGraph() {
             </a>
           </li>
         </ul>
-      </div>
+      </div> */}
       <PieChart width={730} height={300}>
         {/* First Pie Chart */}
         <Pie

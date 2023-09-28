@@ -1,38 +1,21 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Bar, BarChart, Tooltip, Legend, XAxis, YAxis } from "recharts";
 import { changeHorizontalBarGraphMonth } from "../../redux/filterHorizontalBarGraphSlice";
+import { Dropdown } from "../Dropdown";
 
 function HorizontalBarGraph() {
-  const [toggle, setToggle] = useState(false);
-  const { selectedMonthData, selectedMonthIndex, last5Months } = useSelector(
+  const { selectedMonthData, last5Months } = useSelector(
     (store) => store.horizontalBarGraphFilter
   );
   const dispatch = useDispatch();
   return (
     <>
-      <div className="dropdown">
-        <button
-          onClick={() => setToggle((toggle) => !toggle)}
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Month: {last5Months[selectedMonthIndex]}
-        </button>
-        <ul className={`dropdown-menu ${toggle && "d-block"}`}>
-          {last5Months.map((month, index) => (
-            <>
-              <li className="cursor-pointer" onClick={() => dispatch(changeHorizontalBarGraphMonth(index))}>
-                <a className="dropdown-item cursor-pointer" href="##">
-                  {month}
-                </a>
-              </li>
-            </>
-          ))}
-        </ul>
-      </div>
+      <Dropdown
+        name={"Month"}
+        dropdownOptions={last5Months}
+        argOptions={[0, 1, 2, 3, 4]}
+        onClick={(arg) => dispatch(changeHorizontalBarGraphMonth(arg))}
+      />
       <BarChart
         width={730}
         height={250}

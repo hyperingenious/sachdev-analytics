@@ -20,7 +20,7 @@ export default function AppShell() {
     <MantineAppShell
       header={{ height: 40 }}
       navbar={{ width: 230, breakpoint: "sm", collapsed: { mobile: !opened } }}
-      padding="md"
+      padding="xl"
     >
       <MantineAppShell.Header
         style={{
