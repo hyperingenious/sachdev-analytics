@@ -1,4 +1,4 @@
-import { monthNames, rawFromServer } from "../config/app-data";
+import { monthNames, rawFromServer } from "../../config/app-data";
 
 // average rating "all time" of all stars
 function starGrowthLineAllTime() {

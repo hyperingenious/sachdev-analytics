@@ -1,4 +1,4 @@
-import { rawFromServer } from "../config/app-data";
+import { rawFromServer } from "../../config/app-data";
 
 export function starGrowthBarLast5Months() {
   const initializeAccArray = () => [0, 0, 0, 0, 0];

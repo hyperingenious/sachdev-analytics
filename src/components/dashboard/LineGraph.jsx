@@ -84,7 +84,14 @@ function LineGraphFilterBar({ dispatch }) {
         argOptions={[1, 2, 3, 4, 5]}
         onClick={(arg) => dispatch(changeIndividualStarFilter(arg))}
       />
-      <SegmentedButton onChange={(arg) => dispatch(changeDataAsPerTime(arg))} />
+      <SegmentedButton
+        onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
+        data={[
+          { label: "7D", value: "7-day-time" },
+          { label: "1M", value: "30-day-time" },
+          { label: "All time", value: "all-time" },
+        ]}
+      />
     </div>
   );
 }

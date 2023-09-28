@@ -17,7 +17,7 @@ function HorizontalBarGraph() {
   );
   const dispatch = useDispatch();
   return (
-    <>
+    <div style={{marginTop: 'var(--mantine-spacing-md)'}}>
       <Dropdown
         name={"Month"}
         dropdownOptions={last5Months}
@@ -36,7 +36,7 @@ function HorizontalBarGraph() {
           <Bar dataKey="rating" fill="#8884d8" />
         </BarChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 }
 

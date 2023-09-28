@@ -3,11 +3,15 @@ import {
   IconSwitchHorizontal,
   IconLogout,
   IconDashboard,
+  IconTextCaption,
 } from "@tabler/icons-react";
 import classes from "../assets/styles/NavbarSimple.module.css";
 import { Link } from "react-router-dom";
 
-const data = [{ link: "/dashboard", label: "Dashboard", icon: IconDashboard }];
+const data = [
+  { link: "/dashboard", label: "Dashboard", icon: IconDashboard },
+  { link: "/reviews", label: "Reviews", icon: IconTextCaption },
+];
 
 export default function NavbarSimple() {
   const [active, setActive] = useState("Billing");

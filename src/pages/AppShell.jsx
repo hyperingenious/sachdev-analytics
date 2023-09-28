@@ -11,7 +11,7 @@ export default function AppShell() {
 
   useEffect(
     function () {
-      navigate("/dashboard");
+      if (window.location.pathname === "/") navigate("/dashboard");
     },
     [navigate]
   );

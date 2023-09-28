@@ -1,4 +1,4 @@
-import { Button, Menu, Text, rem, useMantineTheme } from "@mantine/core";
+import { Button, Menu,  rem, useMantineTheme } from "@mantine/core";
 import { IconChevronDown, IconGraph } from "@tabler/icons-react";
 
 export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
@@ -7,7 +7,7 @@ export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
     <Menu
       transitionProps={{ transition: "pop-top-right" }}
       position="top-end"
-      width={120}
+      width={190}
     >
       <Menu.Target>
         <Button

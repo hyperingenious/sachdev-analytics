@@ -1,4 +1,4 @@
-import { rawFromServer } from "../config/app-data";
+import { rawFromServer } from "../../config/app-data";
 
 export function starPieDataForLast7Days() {
   const date7DaysAgo = new Date(new Date().setDate(new Date().getDate() - 7));
