@@ -3,6 +3,7 @@ import { SegmentedControl } from "@mantine/core";
 function SegmentedButton({ onChange }) {
   return (
     <SegmentedControl
+    size="xs"
       onChange={onChange} // format:  (arg) => dispatch(changeDataAsPerTime(arg))
       data={[
         { label: "7D", value: "7-day-time" },

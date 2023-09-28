@@ -16,7 +16,7 @@ import {
   changeIndividualStarFilter,
 } from "../../redux/filterLineGraphSlice";
 import { Dropdown } from "../Dropdown";
-import { SegmentedControl } from "@mantine/core";
+import SegmentedButton from "../SegmentedButton";
 
 function LineGraph() {
   const dispatch = useDispatch();
@@ -69,11 +69,11 @@ function LineGraphFilterBar({ dispatch }) {
       style={{
         marginBottom: "var(--mantine-spacing-xs)",
         display: "flex",
-        gap: "var(--mantine-spacing-md)",
+        gap: "var(--mantine-spacing-xs)",
       }}
     >
       <Dropdown
-        name={"Combinations"}
+        name={"Mix"}
         dropdownOptions={filterCombinations}
         argOptions={filterCombinations}
         onClick={(arg) => dispatch(changeCombinationFilter(arg))}
@@ -84,15 +84,7 @@ function LineGraphFilterBar({ dispatch }) {
         argOptions={[1, 2, 3, 4, 5]}
         onClick={(arg) => dispatch(changeIndividualStarFilter(arg))}
       />
-      <SegmentedControl
-       
-        onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
-        data={[
-          { label: "7D", value: "7-day-time" },
-          { label: "1M", value: "30-day-time" },
-          { label: "All time", value: "all-time" },
-        ]}
-      />
+      <SegmentedButton onChange={(arg) => dispatch(changeDataAsPerTime(arg))} />
     </div>
   );
 }

@@ -11,18 +11,25 @@ export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
     >
       <Menu.Target>
         <Button
+          size="xs"
           variant="default"
-          color="rgba(255, 255, 255, 1)"
-          // style={{ boxShadow: "var(--mantine-shadow-md)" }}
+          style={{
+            fontSize: "12px",
+            fontWeight: "normal",
+          }}
           rightSection={
             <IconChevronDown
-              style={{ width: rem(18), height: rem(18) }}
+              style={{
+                paddingRight: "0 !important",
+                width: rem(12),
+                height: rem(12),
+              }}
               stroke={1.5}
             />
           }
           pr={12}
         >
-          <Text>{name}</Text>
+          {name}
         </Button>
       </Menu.Target>
       <Menu.Dropdown
