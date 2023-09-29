@@ -1,5 +1,6 @@
 import { Dropdown } from "../components/Dropdown";
 import SegmentedButton from "../components/SegmentedButton";
+import ReviewCard from "../components/reviews/ReviewCard";
 
 function Reviews() {
   return (
@@ -11,10 +12,7 @@ function Reviews() {
           gap: "var(--mantine-spacing-md)",
         }}
       >
-        <Dropdown
-          name={"Rating"}
-          dropdownOptions={[1, 2, 3, 4, 5]}
-        />
+        <Dropdown name={"Rating"} dropdownOptions={[1, 2, 3, 4, 5]} />
         <SegmentedButton
           data={[
             { label: "7D", value: "7-day-time" },
@@ -22,6 +20,17 @@ function Reviews() {
             { label: "All time", value: "all-time" },
           ]}
         />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "var(--mantine-spacing-md)",
+        }}
+      >
+        {[1, 1, 1, 1, 1].map((data) => (
+          <ReviewCard key={data} />
+        ))}
       </div>
     </>
   );
