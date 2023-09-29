@@ -18,3 +18,10 @@ export function getLast5Month() {
 
   return last5Months;
 }
+
+export function todayMinusWhat(daysBack) {
+  const today = new Date();
+  const pastDate = new Date(today.setDate(today.getDate() - daysBack));
+
+  return pastDate;
+}
