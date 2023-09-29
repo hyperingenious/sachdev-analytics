@@ -7,11 +7,9 @@ function filteredDataAsPerTime(data, timeFilter) {
   if (timeFilter === "all-time") {
     return data;
   }
-
   if (timeFilter === "30-day-time") {
     return data.filter((data) => new Date(data.created_at) >= todayMinus30Days);
   }
-
   if (timeFilter === "7-day-time") {
     return data.filter((data) => new Date(data.created_at) >= todayMinus7Days);
   }
