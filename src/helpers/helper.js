@@ -25,3 +25,13 @@ export function todayMinusWhat(daysBack) {
 
   return pastDate;
 }
+
+export function formatDate(date) {
+  const usableDate = new Date(date);
+
+  const dateString = `${usableDate.getDate()} ${
+    monthNames[usableDate.getMonth()]
+  } ${usableDate.getFullYear()}`;
+
+  return dateString;
+}

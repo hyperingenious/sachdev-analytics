@@ -1,6 +1,7 @@
 import { Dropdown } from "../components/Dropdown";
 import SegmentedButton from "../components/SegmentedButton";
 import ReviewCard from "../components/reviews/ReviewCard";
+import { rawFromServer } from "../config/app-data";
 
 function Reviews() {
   return (
@@ -28,8 +29,8 @@ function Reviews() {
           gap: "var(--mantine-spacing-md)",
         }}
       >
-        {[1, 1, 1, 1, 1].map((data) => (
-          <ReviewCard key={data} />
+        {rawFromServer.map((data) => (
+          <ReviewCard data={data} key={data} />
         ))}
       </div>
     </>

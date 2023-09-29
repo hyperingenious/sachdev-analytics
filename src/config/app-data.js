@@ -646,6 +646,48 @@ export const rawFromServer = [
     review:
       "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
   },
+  {
+    rating: 5,
+    created_at: "2023-09-23 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 3,
+    created_at: "2023-09-24 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 2,
+    created_at: "2023-09-25 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 5,
+    created_at: "2023-09-26 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 1,
+    created_at: "2023-09-27 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 3,
+    created_at: "2023-09-28 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
+  {
+    rating: 2,
+    created_at: "2023-09-29 10:55:23",
+    review:
+      "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
+  },
 ];
 
 /**
