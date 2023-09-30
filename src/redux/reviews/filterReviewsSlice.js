@@ -13,7 +13,7 @@ const initialState = {
   ratingFilter: 15, // 15 | 1 | 2 | 3 | 4 | 5
 };
 
-const filterReviewSlice = createSlice({
+const reviewFilterSlice = createSlice({
   name: "reviewFilterSlice",
   initialState,
   reducers: {
@@ -40,7 +40,7 @@ const filterReviewSlice = createSlice({
       }
     },
     changeReviewDataWithRating(state, action) {
-      state.timeFilter = action.payload;
+      state.ratingFilter = action.payload;
       state.reviewData = filterReviewRating(
         rawFromServer,
         action.payload,
@@ -50,6 +50,6 @@ const filterReviewSlice = createSlice({
   },
 });
 
-export default filterReviewSlice.reducer;
+export default reviewFilterSlice.reducer;
 export const { changeReviewDataWithTime, changeReviewDataWithRating } =
-  filterReviewSlice.actions;
+  reviewFilterSlice.actions;

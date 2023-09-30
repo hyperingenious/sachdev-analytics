@@ -1,9 +1,12 @@
 import { Dropdown } from "../components/Dropdown";
 import SegmentedButton from "../components/SegmentedButton";
 import ReviewCard from "../components/reviews/ReviewCard";
-import { rawFromServer } from "../config/app-data";
+import { useDispatch, useSelector } from "react-redux";
+import { changeReviewDataWithRating } from "../redux/reviews/filterReviewsSlice";
 
 function Reviews() {
+  const { reviewData } = useSelector((state) => state.reviewsFilter);
+  const dispatch = useDispatch();
   return (
     <>
       <div
@@ -13,7 +16,12 @@ function Reviews() {
           gap: "var(--mantine-spacing-md)",
         }}
       >
-        <Dropdown name={"Rating"} dropdownOptions={[1, 2, 3, 4, 5]} />
+        <Dropdown
+          name={"Rating"}
+          argOptions={[1, 2, 3, 4, 5, 15]}
+          dropdownOptions={[1, 2, 3, 4, 5, "All stars"]}
+          onClick={(arg) => dispatch(changeReviewDataWithRating(arg))}
+        />
         <SegmentedButton
           data={[
             { label: "7D", value: "7-day-time" },
@@ -29,7 +37,7 @@ function Reviews() {
           gap: "var(--mantine-spacing-md)",
         }}
       >
-        {rawFromServer.map((data) => (
+        {reviewData.map((data) => (
           <ReviewCard data={data} key={data} />
         ))}
       </div>
