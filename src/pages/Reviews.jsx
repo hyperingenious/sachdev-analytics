@@ -17,6 +17,7 @@ function Reviews() {
         style={{
           display: "flex",
           gap: "var(--mantine-spacing-md)",
+          
         }}
       >
         <Dropdown
@@ -39,6 +40,7 @@ function Reviews() {
           display: "flex",
           flexWrap: "wrap",
           gap: "var(--mantine-spacing-md)",
+          marginTop: 'var(--mantine-spacing-md)'
         }}
       >
         {reviewData.map((data) => (

@@ -17,7 +17,7 @@ export default function ReviewCard({ data }) {
 
   return (
     <Card withBorder radius="md" className={classes.card}>
-      <Text fz="sm" c="dimmed" lineClamp={4}>
+      <Text fz="sm" c="dimmed">
         {data.review}
       </Text>
       <Group justify="space-between" className={classes.footer}>
