@@ -59,10 +59,9 @@ function PieGraph() {
           </li>
         </ul>
       </div> */}
-      <ResponsiveContainer minWidth={270} width={"70%"} height={230}>
+      <ResponsiveContainer minWidth={270} width={"70%"} height={260}>
         <PieChart width={400} height={210}>
           {/* First Pie Chart */}
-          {/* <ResponsiveContainer > */}
           <Pie
             data={dataAsPerTime}
             dataKey="value"
@@ -80,7 +79,10 @@ function PieGraph() {
             ))}
           </Pie>
           <Tooltip />
-          <Legend iconType="circle" />
+          <Legend
+            style={{ marginTop: "var(--mantine-spacing-md)" }}
+            iconType="circle"
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>
