@@ -17,23 +17,31 @@ function HorizontalBarGraph() {
   );
   const dispatch = useDispatch();
   return (
-    <div style={{marginTop: 'var(--mantine-spacing-md)'}}>
+    <div style={{ marginTop: "var(--mantine-spacing-md)" }}>
       <Dropdown
         name={"Month"}
         dropdownOptions={last5Months}
         argOptions={[0, 1, 2, 3, 4]}
         onClick={(arg) => dispatch(changeHorizontalBarGraphMonth(arg))}
       />
-      <ResponsiveContainer minWidth={270}  width={"70%"} height={230}>
-        <BarChart
-          data={selectedMonthData}
-          layout="vertical"
-        >
-          <XAxis type="number" />
-          <YAxis dataKey="name" type="category" />
+      <ResponsiveContainer minWidth={270} width={"90%"} height={270}>
+        <BarChart data={selectedMonthData} layout="vertical">
+          <XAxis
+            tick={{ fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+            type="number"
+          />
+          <YAxis
+            tick={{ fontSize: 12 }}
+            axisLine={false}
+            tickLine={false}
+            dataKey="name"
+            type="category"
+          />
           <Tooltip />
           <Legend />
-          <Bar dataKey="rating" fill="#8884d8" />
+          <Bar dataKey="rating" fill="#8884d8" barSize={20} />
         </BarChart>
       </ResponsiveContainer>
     </div>
