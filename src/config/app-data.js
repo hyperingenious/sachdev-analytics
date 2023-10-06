@@ -710,22 +710,6 @@ export const filterCombinations = [
   "3,4",
   "3,5",
   "4,5",
-  "1,2,3",
-  "1,2,4",
-  "1,2,5",
-  "1,3,4",
-  "1,3,5",
-  "1,4,5",
-  "2,3,4",
-  "2,3,5",
-  "2,4,5",
-  "3,4,5",
-  "1,2,3,4",
-  "1,2,3,5",
-  "1,2,4,5",
-  "1,3,4,5",
-  "2,3,4,5",
-  "1,2,3,4,5",
 ];
 
 /**
@@ -749,4 +733,10 @@ export const monthNames = [
 /**
  * An array which contains 5 color names in the form of string
  */
-export const colorArray = ["#ff00004a", "#0000ff7a", "#00ffff73", "#f0e68c91", "#ffa5007d"];
+export const colorArray = [
+  "RGB(204, 204, 204, 74)",
+  "RGB(77, 77, 204, 122)",
+  "RGB(153, 255, 255, 115)",
+  "RGB(204, 204, 153, 145)",
+  "RGB(255, 191, 128, 125)",
+];

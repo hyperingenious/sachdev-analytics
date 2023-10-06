@@ -81,7 +81,7 @@ function PieGraph() {
           <Tooltip />
           <Legend
             style={{ marginTop: "var(--mantine-spacing-md)" }}
-            iconType="circle"
+            iconType="square"
           />
         </PieChart>
       </ResponsiveContainer>
