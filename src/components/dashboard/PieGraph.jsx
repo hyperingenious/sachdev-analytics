@@ -9,28 +9,27 @@ import {
 } from "recharts";
 import { changePieDataAsPerTime } from "../../redux/dashboard/filterPieGraphSlice";
 import { Dropdown } from "../Dropdown";
+import { Group, Text, Title } from "@mantine/core";
 
 function PieGraph() {
-  const { dataAsPerTime, timeFilter } = useSelector(
-    (store) => store.pieGraphFilter
-  );
+  const { dataAsPerTime } = useSelector((store) => store.pieGraphFilter);
   const dispatch = useDispatch();
 
   // Define an array of colors for sections
   const sectionColors = ["#6d28d9", "#be123c", "#0088FE", "#059669", "#eab308"];
 
   return (
-    <div
-      style={{
-        marginTop: "var(--mantine-spacing-lg)",
-      }}
-    >
-      <Dropdown
-        name={"Data"}
-        dropdownOptions={["7 Days", "Last Month", "All time"]}
-        argOptions={["7-day-time", "30-day-time", "all-time"]}
-        onClick={(arg) => dispatch(changePieDataAsPerTime(arg))}
-      />
+    <div>
+      <Group justify="space-between" w={'100%'}>
+        <Text c={"dimmed"}>PieChart</Text>
+
+        <Dropdown
+          name={"Data"}
+          dropdownOptions={["7 Days", "Last Month", "All time"]}
+          argOptions={["7-day-time", "30-day-time", "all-time"]}
+          onClick={(arg) => dispatch(changePieDataAsPerTime(arg))}
+        />
+      </Group>
       {/* <div className="dropdown">
         <button
           onClick={() => setToggle((toggle) => !toggle)}
@@ -59,17 +58,17 @@ function PieGraph() {
           </li>
         </ul>
       </div> */}
-      <ResponsiveContainer minWidth={270} width={"70%"} height={260}>
-        <PieChart width={400} height={210}>
+      <ResponsiveContainer width={230} height={200}>
+        <PieChart>
           {/* First Pie Chart */}
-          <Pie
+          <Pie margin={{ right: 20 }}
             data={dataAsPerTime}
             dataKey="value"
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={90}
-            innerRadius={50}
+            outerRadius={70}
+            innerRadius={45}
           >
             {dataAsPerTime.map((entry, index) => (
               <Cell
@@ -80,8 +79,12 @@ function PieGraph() {
           </Pie>
           <Tooltip />
           <Legend
-            style={{ marginTop: "var(--mantine-spacing-md)" }}
-            iconType="square"
+            iconType="circle"
+            layout="vertical"
+            align="right"
+            verticalAlign="middle"
+            iconSize={7}
+            wrapperStyle={{ fontSize: "12px" , marginLeft: '1rem'}}
           />
         </PieChart>
       </ResponsiveContainer>
