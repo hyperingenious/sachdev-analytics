@@ -3,6 +3,7 @@ import filterLineGraphSlice from "./dashboard/filterLineGraphSlice";
 import filterPieGraphSlice from "./dashboard/filterPieGraphSlice";
 import filterHorizontalBarGraphSlice from "./dashboard/filterHorizontalBarGraphSlice";
 import filterReviewsSlice from "./reviews/filterReviewsSlice";
+import filterSquareGraphSlice from "./dashboard/filterSquareGraphSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     pieGraphFilter: filterPieGraphSlice,
     horizontalBarGraphFilter: filterHorizontalBarGraphSlice,
     reviewsFilter: filterReviewsSlice,
+    three100SquareFilter: filterSquareGraphSlice,
   },
 });
 
