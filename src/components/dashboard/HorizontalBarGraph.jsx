@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import { changeHorizontalBarGraphMonth } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
 import { Dropdown } from "../Dropdown";
+import { Group, Text } from "@mantine/core";
 
 function HorizontalBarGraph() {
   const { selectedMonthData, last5Months } = useSelector(
@@ -17,15 +18,24 @@ function HorizontalBarGraph() {
   );
   const dispatch = useDispatch();
   return (
-    <div style={{ marginTop: "var(--mantine-spacing-md)" }}>
-      <Dropdown
-        name={"Month"}
-        dropdownOptions={last5Months}
-        argOptions={[0, 1, 2, 3, 4]}
-        onClick={(arg) => dispatch(changeHorizontalBarGraphMonth(arg))}
-      />
-      <ResponsiveContainer minWidth={270} width={"90%"} height={270}>
-        <BarChart data={selectedMonthData} layout="vertical">
+    <div>
+      <Group justify="space-between" w={"100%"}>
+        <Text c={"dimmed"}>BarGraph</Text>
+        <Dropdown
+          name={"Month"}
+          dropdownOptions={last5Months}
+          argOptions={[0, 1, 2, 3, 4]}
+          onClick={(arg) => dispatch(changeHorizontalBarGraphMonth(arg))}
+        />
+      </Group>
+
+      <ResponsiveContainer width={230} height={200}>
+        <BarChart
+          data={selectedMonthData}
+          layout="vertical"
+          barCategoryGap={2}
+          margin={{ top: 25, right: 20, bottom: 5, left: -16 }}
+        >
           <XAxis
             tick={{ fontSize: 12 }}
             axisLine={false}
@@ -40,8 +50,14 @@ function HorizontalBarGraph() {
             type="category"
           />
           <Tooltip />
-          <Legend />
-          <Bar dataKey="rating" fill="#8884d8" barSize={20} />
+          {/* <Legend /> */}
+          <Bar
+            dataKey="rating"
+            fill="#00b385"
+            barSize={13}
+            barGap={2}
+            radius={15}
+          />
         </BarChart>
       </ResponsiveContainer>
     </div>
