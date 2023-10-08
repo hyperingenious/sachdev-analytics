@@ -1,30 +1,13 @@
+import styles from "./TheGrid.module.css";
+import PieGraph from "./PieGraph";
+import HorizontalBarGraph from "./HorizontalBarGraph";
+import LineGraph from "./LineGraph";
+import SquareGraph from "./SquareGraph";
+
 import { Card, Flex, Group, Text } from "@mantine/core";
-import styles from "../assets/styles/TheGrid.module.css";
-import PieGraph from "./dashboard/PieGraph";
-import HorizontalBarGraph from "./dashboard/HorizontalBarGraph";
-import LineGraph from "./dashboard/LineGraph";
 import { IconArrowUpRight, IconUserBolt } from "@tabler/icons-react";
 
-function Demo() {
-  return (
-    <div className={styles.container1}>
-      {Array.from({ length: 486 }, (el) => el).map((_, index) => (
-        <div
-          key={index}
-          style={{
-            background: "green",
-            width: "9px",
-            height: "9px",
-            margin: "1px",
-            borderRadius:'1px'
-          }}
-        ></div>
-      ))}
-    </div>
-  );
-}
-
-function TheGrid() {
+function DashboardGrid() {
   return (
     <div className={styles.container}>
       <Card
@@ -33,6 +16,7 @@ function TheGrid() {
       >
         <PieGraph />
       </Card>
+
       <Card
         withBorder
         className={`${styles.card} ${styles.gridRowSpan2} ${styles.graphSpaccing}`}
@@ -98,11 +82,12 @@ function TheGrid() {
       >
         <LineGraph />
       </Card>
+
       <Card withBorder className={`${styles.card} ${styles.gridRowSpan2}`}>
-        <Demo />
+        <SquareGraph />
       </Card>
     </div>
   );
 }
 
-export default TheGrid;
+export default DashboardGrid;

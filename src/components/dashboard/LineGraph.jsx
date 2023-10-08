@@ -25,10 +25,10 @@ function LineGraph() {
     useSelector((store) => store.lineGraphFilter);
 
   return (
-    <div style={{ marginTop: "var(--mantine-spacing-xl)" }}>
+    <div>
       <LineGraphFilterBar dispatch={dispatch} />
-      <ResponsiveContainer height={220} width={"100%"}>
-        <AreaChart data={dataAsPerTime}>
+      <ResponsiveContainer height={225} width={'100%'}>
+        <AreaChart data={dataAsPerTime} margin={{ left: -19, right: -30 }}>
           <XAxis tick={{ fontSize: 12 }} dataKey={"label"} />
           <YAxis
             tick={{ fontSize: 12 }}

@@ -9,7 +9,7 @@ import {
 } from "recharts";
 import { changePieDataAsPerTime } from "../../redux/dashboard/filterPieGraphSlice";
 import { Dropdown } from "../Dropdown";
-import { Group, Text, Title } from "@mantine/core";
+import { Group, Text } from "@mantine/core";
 
 function PieGraph() {
   const { dataAsPerTime } = useSelector((store) => store.pieGraphFilter);
@@ -58,7 +58,7 @@ function PieGraph() {
           </li>
         </ul>
       </div> */}
-      <ResponsiveContainer width={230} height={200}>
+      <ResponsiveContainer width={230} height={180}>
         <PieChart>
           {/* First Pie Chart */}
           <Pie margin={{ right: 20 }}

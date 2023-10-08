@@ -5,7 +5,7 @@ function create300Square() {
   let sq = [];
 
   if (len >= 304) {
-    rawFromServer.slice(-304).forEach((el) => sq.push(el.rating));
+    rawFromServer.slice(-304).forEach((el) => sq.unshift(el.rating));
     return sq;
   }
 
@@ -19,7 +19,7 @@ function create300Square() {
 
     Array.from({ length: difference }, () => 0).forEach((el) => sq.push(el));
 
-    rawFromServer.forEach((el) => sq.push(el));
+    rawFromServer.forEach((el) => sq.unshift(el.rating));
     return sq;
   }
 }

@@ -3,7 +3,6 @@ import {
   Bar,
   BarChart,
   Tooltip,
-  Legend,
   XAxis,
   YAxis,
   ResponsiveContainer,
@@ -11,6 +10,7 @@ import {
 import { changeHorizontalBarGraphMonth } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
 import { Dropdown } from "../Dropdown";
 import { Group, Text } from "@mantine/core";
+
 
 function HorizontalBarGraph() {
   const { selectedMonthData, last5Months } = useSelector(
@@ -29,7 +29,7 @@ function HorizontalBarGraph() {
         />
       </Group>
 
-      <ResponsiveContainer width={230} height={200}>
+      <ResponsiveContainer width={230} height={180}>
         <BarChart
           data={selectedMonthData}
           layout="vertical"
@@ -57,6 +57,7 @@ function HorizontalBarGraph() {
             barSize={13}
             barGap={2}
             radius={15}
+            
           />
         </BarChart>
       </ResponsiveContainer>

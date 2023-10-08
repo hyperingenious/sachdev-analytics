@@ -5,7 +5,7 @@ import {
   IconDashboard,
   IconTextCaption,
 } from "@tabler/icons-react";
-import classes from "../assets/styles/NavbarSimple.module.css";
+import classes from "./NavbarSimple.module.css";
 import { Link } from "react-router-dom";
 
 const data = [

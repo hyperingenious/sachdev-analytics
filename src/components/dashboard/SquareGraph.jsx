@@ -1,5 +1,5 @@
 import { Group, Text } from "@mantine/core";
-import styles from "../../assets/styles/SquareGraph.module.css";
+import styles from "./SquareGraph.module.css";
 import { useSelector } from "react-redux";
 
 const squareColor = [
@@ -18,8 +18,8 @@ function SquareGraph() {
   console.log(three100Squares);
   return (
     <Group justify="space-between">
-      <Group justify="space-between" w={"100%"}>
-        <Text size="xs">Last 300 reviews</Text>
+      <Group justify="space-between" w={"100%"} gap={0}>
+        <Text size="xs">Last 300</Text>
         <Group gap={2}>
           <Text size="xs">1 to 5</Text>
           <Group gap={0}>
