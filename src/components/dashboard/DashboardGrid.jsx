@@ -1,4 +1,4 @@
-import styles from "./TheGrid.module.css";
+import styles from "./DashboardGrid.module.css";
 import PieGraph from "./PieGraph";
 import HorizontalBarGraph from "./HorizontalBarGraph";
 import LineGraph from "./LineGraph";
