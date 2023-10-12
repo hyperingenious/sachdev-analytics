@@ -2,14 +2,14 @@ import { useState } from "react";
 import {
   IconSwitchHorizontal,
   IconLogout,
-  IconDashboard,
   IconTextCaption,
+  IconLayoutDashboard,
 } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import { Link } from "react-router-dom";
 
 const data = [
-  { link: "/dashboard", label: "Dashboard", icon: IconDashboard },
+  { link: "/dashboard", label: "Dashboard", icon: IconLayoutDashboard },
   { link: "/reviews", label: "Reviews", icon: IconTextCaption },
 ];
 

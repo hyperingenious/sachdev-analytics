@@ -25,7 +25,7 @@ function HorizontalBarGraph() {
 
   useEffect(
     function () {
-      window.innerWidth > 600
+      window.innerWidth < 600
         ? setHBarDimensions({ width: 290, height: 200 })
         : setHBarDimensions({ width: 230, height: 180 });
     },

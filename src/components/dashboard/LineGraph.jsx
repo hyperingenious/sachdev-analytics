@@ -2,7 +2,6 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -88,7 +87,7 @@ function LineGraph() {
             </>
           )}
 
-          <Legend iconType="circle" />
+          {/* <Legend iconType="circle" /> */}
         </AreaChart>
       </ResponsiveContainer>
     </div>

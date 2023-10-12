@@ -16,10 +16,10 @@ function create300Square() {
 
   if (len < 304) {
     const difference = 304 - len;
-
+    
     Array.from({ length: difference }, () => 0).forEach((el) => sq.push(el));
-
     rawFromServer.forEach((el) => sq.unshift(el.rating));
+
     return sq;
   }
 }
