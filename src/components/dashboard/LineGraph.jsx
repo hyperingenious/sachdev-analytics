@@ -7,17 +7,19 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { colorArray, filterCombinations } from "../../config/app-data";
-import { useDispatch, useSelector } from "react-redux";
 import {
   changeCombinationFilter,
   changeDataAsPerTime,
   changeIndividualStarFilter,
 } from "../../redux/dashboard/filterLineGraphSlice";
+
+import { colorArray, filterCombinations } from "../../config/app-data";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "../Dropdown";
-import SegmentedButton from "../SegmentedButton";
 import { Box, Card, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+
+import SegmentedButton from "../SegmentedButton";
 
 function LineGraph() {
   const dispatch = useDispatch();
@@ -40,7 +42,11 @@ function LineGraph() {
 
   return (
     <div>
-      <LineGraphFilterBar dispatch={dispatch} />
+      <LineGraphFilterBar
+        dispatch={dispatch}
+        individualStarFilter={individualStarFilter}
+        combinationFilter={combinationFilter}
+      />
       <ResponsiveContainer
         height={lineGraphDimensions.height}
         width={lineGraphDimensions.width}
@@ -110,7 +116,11 @@ function LineGraph() {
   );
 }
 
-function LineGraphFilterBar({ dispatch }) {
+function LineGraphFilterBar({
+  dispatch,
+  combinationFilter,
+  individualStarFilter,
+}) {
   return (
     <div
       style={{
@@ -124,12 +134,14 @@ function LineGraphFilterBar({ dispatch }) {
         dropdownOptions={filterCombinations}
         argOptions={filterCombinations}
         onClick={(arg) => dispatch(changeCombinationFilter(arg))}
+        valueType={combinationFilter || ""}
       />
       <Dropdown
         name={"Star"}
         dropdownOptions={[1, 2, 3, 4, 5]}
         argOptions={[1, 2, 3, 4, 5]}
         onClick={(arg) => dispatch(changeIndividualStarFilter(arg))}
+        valueType={individualStarFilter || ""}
       />
       <SegmentedButton
         onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
