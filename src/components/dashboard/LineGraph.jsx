@@ -96,7 +96,6 @@ function LineGraph() {
                 dataKey={`avg_${individualStarFilter}`}
                 type={"monotone"}
                 strokeWidth={2}
-                // fill={"none"}
                 fill="url(#color)"
                 stroke={colorArray[individualStarFilter]}
                 unit={"%"}
@@ -153,6 +152,7 @@ function CustomTooltip({ action, payload, label }) {
     </Card>
   );
 }
+
 function Label({ label }) {
   return (
     <Box align="flex-start" justify="flex-start" gap="xs">
@@ -160,6 +160,7 @@ function Label({ label }) {
     </Box>
   );
 }
+
 function StarAverage({ payload }) {
   return (
     <>

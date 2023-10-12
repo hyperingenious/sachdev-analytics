@@ -10,3 +10,10 @@
   margin: 1px;
   border-radius: 2px;
 }
+
+@media (width < 600px) {
+  .square {
+    width: 13px;
+    height: 13px;
+  }
+}
