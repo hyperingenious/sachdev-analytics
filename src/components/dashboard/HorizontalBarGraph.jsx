@@ -6,7 +6,7 @@ import { Group, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 function HorizontalBarGraph() {
-  const { selectedMonthData, last5Months } = useSelector(
+  const { selectedMonthData, last5Months, selectedMonthIndex } = useSelector(
     (store) => store.horizontalBarGraphFilter
   );
   const dispatch = useDispatch();
@@ -34,6 +34,7 @@ function HorizontalBarGraph() {
           dropdownOptions={last5Months}
           argOptions={[0, 1, 2, 3, 4]}
           onClick={(arg) => dispatch(changeHorizontalBarGraphMonth(arg))}
+          valueType={last5Months[selectedMonthIndex]}
         />
       </Group>
 
