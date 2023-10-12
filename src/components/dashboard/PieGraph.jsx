@@ -17,7 +17,9 @@ function PieGraph() {
   const sectionColors = ["#6d28d9", "#be123c", "#0088FE", "#059669", "#eab308"];
 
   const dispatch = useDispatch();
-  const { dataAsPerTime } = useSelector((store) => store.pieGraphFilter);
+  const { dataAsPerTime, timeFilter } = useSelector(
+    (store) => store.pieGraphFilter
+  );
 
   const [pieRadius, setPieRadius] = useState({
     innerRadius: 0,
@@ -39,6 +41,7 @@ function PieGraph() {
       <Group justify="space-between" w={"100%"}>
         <Text c={"dimmed"}>PieChart</Text>
         <Dropdown
+          valueType={timeFilter}
           name={"Data"}
           dropdownOptions={["7 Days", "Last Month", "All time"]}
           argOptions={["7-day-time", "30-day-time", "all-time"]}
@@ -83,5 +86,6 @@ function PieGraph() {
     </div>
   );
 }
+
 
 export default PieGraph;
