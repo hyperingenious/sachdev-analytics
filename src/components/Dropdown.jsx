@@ -1,13 +1,19 @@
-import { Button, Menu,  rem, useMantineTheme } from "@mantine/core";
+import { Button, Menu, rem, useMantineTheme } from "@mantine/core";
 import { IconChevronDown, IconGraph } from "@tabler/icons-react";
 
-export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
+export function Dropdown({
+  name,
+  valueType = "",
+  dropdownOptions,
+  onClick,
+  argOptions,
+}) {
   const theme = useMantineTheme();
   return (
     <Menu
       transitionProps={{ transition: "pop-top-right" }}
       position="top-end"
-      width={190}
+      width={140}
     >
       <Menu.Target>
         <Button
@@ -30,13 +36,14 @@ export function Dropdown({ name, dropdownOptions, onClick, argOptions }) {
           pr={12}
         >
           {name}
+          {valueType && `: ${valueType}`}
         </Button>
       </Menu.Target>
       <Menu.Dropdown
-        // style={{
-        //   maxHeight: "10rem",
-        //   overflowY: "scroll",
-        // }}
+      // style={{
+      //   maxHeight: "10rem",
+      //   overflowY: "scroll",
+      // }}
       >
         {dropdownOptions.map((data, index) => (
           <Menu.Item
