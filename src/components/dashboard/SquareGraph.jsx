@@ -15,14 +15,13 @@ function SquareGraph() {
   const { three100Squares } = useSelector(
     (store) => store.three100SquareFilter
   );
-  console.log(three100Squares);
   return (
     <Group justify="space-between">
       <Group justify="space-between" w={"100%"} gap={0}>
         <Text size="xs">Last 300</Text>
         <Group gap={2}>
           <Text size="xs">1 to 5</Text>
-          <Group gap={0}>
+        <Group gap={0}>
             {squareColor.map((sq) => (
               <div
                 key={sq}

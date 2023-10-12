@@ -134,9 +134,9 @@ function LineGraphFilterBar({ dispatch }) {
       <SegmentedButton
         onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
         data={[
-          { label: "7D", value: "7-day-time" },
-          { label: "1M", value: "30-day-time" },
           { label: "All time", value: "all-time" },
+          { label: "1M", value: "30-day-time" },
+          { label: "7D", value: "7-day-time" },
         ]}
       />
     </div>
@@ -144,7 +144,6 @@ function LineGraphFilterBar({ dispatch }) {
 }
 
 function CustomTooltip({ action, payload, label }) {
-  console.log(action, payload, label);
   return (
     <Card padding="xs" radius="sm" withBorder>
       <Label label={label} />

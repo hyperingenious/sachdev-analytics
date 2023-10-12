@@ -23,8 +23,6 @@ function PieGraph() {
     innerRadius: 0,
     outerRadius: 0,
   });
-  console.log(pieRadius);
-
   useEffect(
     function () {
       if (window.innerWidth < 600) {
@@ -67,7 +65,6 @@ function PieGraph() {
             {dataAsPerTime.map((entry, index) => (
               <Cell
                 key={`cell-${index}`}
-                
                 fill={sectionColors[index % sectionColors.length]}
               />
             ))}

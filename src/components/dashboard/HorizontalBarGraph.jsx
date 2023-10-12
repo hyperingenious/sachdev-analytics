@@ -1,12 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Bar,
-  BarChart,
-  Tooltip,
-  XAxis,
-  YAxis,
-  ResponsiveContainer,
-} from "recharts";
+import { Bar, BarChart, Tooltip, XAxis, YAxis, LabelList } from "recharts";
 import { changeHorizontalBarGraphMonth } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
 import { Dropdown } from "../Dropdown";
 import { Group, Text } from "@mantine/core";
@@ -44,40 +37,42 @@ function HorizontalBarGraph() {
         />
       </Group>
 
-      <ResponsiveContainer
+      <BarChart
         width={hBarDimensions.width}
         height={hBarDimensions.height}
+        data={selectedMonthData}
+        layout="vertical"
+        barCategoryGap={2}
+        margin={{ top: 25, right: 20, bottom: 5, left: -16 }}
       >
-        <BarChart
-          data={selectedMonthData}
-          layout="vertical"
-          barCategoryGap={2}
-          margin={{ top: 25, right: 20, bottom: 5, left: -16 }}
-        >
-          <XAxis
-            tick={{ fontSize: 12 }}
-            axisLine={false}
-            tickLine={false}
-            type="number"
-          />
-          <YAxis
-            tick={{ fontSize: 12 }}
-            axisLine={false}
-            tickLine={false}
-            dataKey="name"
-            type="category"
-          />
-          <Tooltip />
-          {/* <Legend /> */}
-          <Bar
-            dataKey="rating"
-            fill="#00b385"
-            barSize={13}
-            barGap={3}
-            radius={15}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+        <XAxis
+          tick={{ fontSize: 12 }}
+          axisLine={false}
+          tickLine={false}
+          type="number"
+        />
+        <YAxis
+          tick={{ fontSize: 12 }}
+          axisLine={false}
+          tickLine={false}
+          dataKey="name"
+          type="category"
+        />
+        <Tooltip />
+        {/* <Legend /> */}
+        <Bar
+          dataKey="rating"
+          fill="#00b385"
+          barSize={13}
+          barGap={3}
+          radius={15}
+        ></Bar>
+        <LabelList
+          dataKey="rating"
+          position="inside"
+          style={{ fontSize: 12, color: "white" }}
+        />
+      </BarChart>
     </div>
   );
 }
