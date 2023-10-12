@@ -10,13 +10,28 @@ import {
 import { changeHorizontalBarGraphMonth } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
 import { Dropdown } from "../Dropdown";
 import { Group, Text } from "@mantine/core";
-
+import { useEffect, useState } from "react";
 
 function HorizontalBarGraph() {
   const { selectedMonthData, last5Months } = useSelector(
     (store) => store.horizontalBarGraphFilter
   );
   const dispatch = useDispatch();
+
+  const [hBarDimensions, setHBarDimensions] = useState({
+    width: 230,
+    height: 180,
+  });
+
+  useEffect(
+    function () {
+      window.innerWidth > 600
+        ? setHBarDimensions({ width: 290, height: 200 })
+        : setHBarDimensions({ width: 230, height: 180 });
+    },
+    [setHBarDimensions]
+  );
+
   return (
     <div>
       <Group justify="space-between" w={"100%"}>
@@ -29,7 +44,10 @@ function HorizontalBarGraph() {
         />
       </Group>
 
-      <ResponsiveContainer width={230} height={180}>
+      <ResponsiveContainer
+        width={hBarDimensions.width}
+        height={hBarDimensions.height}
+      >
         <BarChart
           data={selectedMonthData}
           layout="vertical"
@@ -55,9 +73,8 @@ function HorizontalBarGraph() {
             dataKey="rating"
             fill="#00b385"
             barSize={13}
-            barGap={2}
+            barGap={3}
             radius={15}
-            
           />
         </BarChart>
       </ResponsiveContainer>
