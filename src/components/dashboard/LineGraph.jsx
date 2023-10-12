@@ -17,16 +17,34 @@ import {
 import { Dropdown } from "../Dropdown";
 import SegmentedButton from "../SegmentedButton";
 import { Box, Card, Text } from "@mantine/core";
+import { useEffect, useState } from "react";
 
 function LineGraph() {
   const dispatch = useDispatch();
   const { combinationFilter, dataAsPerTime, individualStarFilter } =
     useSelector((store) => store.lineGraphFilter);
 
+  const [lineGraphDimensions, setLineGraphDimensions] = useState({
+    width: "100%",
+    height: 225,
+  });
+
+  useEffect(
+    function () {
+      window.innerWidth < 600
+        ? setLineGraphDimensions({ width: "100%", height: 140 })
+        : setLineGraphDimensions({ width: "100%", height: 225 });
+    },
+    [setLineGraphDimensions]
+  );
+
   return (
     <div>
       <LineGraphFilterBar dispatch={dispatch} />
-      <ResponsiveContainer height={225} width={'100%'}>
+      <ResponsiveContainer
+        height={lineGraphDimensions.height}
+        width={lineGraphDimensions.width}
+      >
         <AreaChart data={dataAsPerTime} margin={{ left: -19, right: -30 }}>
           <XAxis tick={{ fontSize: 12 }} dataKey={"label"} />
           <YAxis
@@ -50,7 +68,6 @@ function LineGraph() {
                   dataKey={`avg_${combi}`}
                   type={"monotone"}
                   strokeWidth={2}
-                  // fill={"none"}
                   fill="url(#color)"
                   stroke={colorArray[combi - 1]}
                   unit={"%"}
