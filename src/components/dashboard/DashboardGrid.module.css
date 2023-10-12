@@ -3,15 +3,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   max-width: 49rem;
-  grid-auto-rows: minmax(
-    0,
-    auto
-  ); /* Adjust the min and max height as needed */
-}
-
-.card {
-  border-radius: 10px;
-  border: 2px solid white;
+  grid-auto-rows: minmax(0, auto); /* Adjust the min and max height as needed */
 }
 
 .statCard {
@@ -34,9 +26,11 @@
   grid-column: span 2;
 }
 
-@media screen and (max-width: 960px) {
+/*For the small devices */
+@media (max-width: 600px) {
   .container {
-    grid-template-columns: repeat(1, 1fr);
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

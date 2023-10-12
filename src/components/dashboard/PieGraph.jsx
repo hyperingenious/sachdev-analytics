@@ -10,19 +10,36 @@ import {
 import { changePieDataAsPerTime } from "../../redux/dashboard/filterPieGraphSlice";
 import { Dropdown } from "../Dropdown";
 import { Group, Text } from "@mantine/core";
+import { useEffect, useState } from "react";
 
 function PieGraph() {
-  const { dataAsPerTime } = useSelector((store) => store.pieGraphFilter);
-  const dispatch = useDispatch();
-
   // Define an array of colors for sections
   const sectionColors = ["#6d28d9", "#be123c", "#0088FE", "#059669", "#eab308"];
 
+  const dispatch = useDispatch();
+  const { dataAsPerTime } = useSelector((store) => store.pieGraphFilter);
+
+  const [pieRadius, setPieRadius] = useState({
+    innerRadius: 0,
+    outerRadius: 0,
+  });
+  console.log(pieRadius);
+  
+  useEffect(
+    function () {
+      if (window.innerWidth > 600) {
+        setPieRadius({ innerRadius: 55, outerRadius: 85 });
+      } else {
+        setPieRadius({ innerRadius: 45, outerRadius: 70 });
+      }
+    },
+    [setPieRadius]
+  );
+
   return (
     <div>
-      <Group justify="space-between" w={'100%'}>
+      <Group justify="space-between" w={"100%"}>
         <Text c={"dimmed"}>PieChart</Text>
-
         <Dropdown
           name={"Data"}
           dropdownOptions={["7 Days", "Last Month", "All time"]}
@@ -30,45 +47,22 @@ function PieGraph() {
           onClick={(arg) => dispatch(changePieDataAsPerTime(arg))}
         />
       </Group>
-      {/* <div className="dropdown">
-        <button
-          onClick={() => setToggle((toggle) => !toggle)}
-          className="btn btn-secondary dropdown-toggle"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          Data: {timeFilter}
-        </button>
-        <ul className={`dropdown-menu ${toggle ? "d-block" : ""}`}>
-          <li onClick={() => dispatch(changePieDataAsPerTime("7-day-time"))}>
-            <a className="dropdown-item" href="#">
-              7 Days
-            </a>
-          </li>
-          <li onClick={() => dispatch(changePieDataAsPerTime("30-day-time"))}>
-            <a className="dropdown-item" href="#">
-              Last Month
-            </a>
-          </li>
-          <li onClick={() => dispatch(changePieDataAsPerTime("all-time"))}>
-            <a className="dropdown-item" href="#">
-              All time
-            </a>
-          </li>
-        </ul>
-      </div> */}
-      <ResponsiveContainer width={230} height={180}>
+
+      <ResponsiveContainer width={"100%"} height={180}>
         <PieChart>
           {/* First Pie Chart */}
-          <Pie margin={{ right: 20 }}
+          <Pie
+            margin={{ right: 20 }}
             data={dataAsPerTime}
             dataKey="value"
             nameKey="name"
             cx="50%"
             cy="50%"
-            outerRadius={70}
-            innerRadius={45}
+            innerRadius={pieRadius.innerRadius}
+            outerRadius={pieRadius.outerRadius}
+            // outerRadius={85}
+            // innerRadius={55}
+            stroke="none"
           >
             {dataAsPerTime.map((entry, index) => (
               <Cell
@@ -84,7 +78,7 @@ function PieGraph() {
             align="right"
             verticalAlign="middle"
             iconSize={7}
-            wrapperStyle={{ fontSize: "12px" , marginLeft: '1rem'}}
+            wrapperStyle={{ fontSize: "12px", marginLeft: "1rem" }}
           />
         </PieChart>
       </ResponsiveContainer>
