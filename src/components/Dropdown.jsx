@@ -39,12 +39,7 @@ export function Dropdown({
           {valueType && `: ${valueType}`}
         </Button>
       </Menu.Target>
-      <Menu.Dropdown
-      // style={{
-      //   maxHeight: "10rem",
-      //   overflowY: "scroll",
-      // }}
-      >
+      <Menu.Dropdown>
         {dropdownOptions.map((data, index) => (
           <Menu.Item
             onClick={() => onClick(argOptions[index])}

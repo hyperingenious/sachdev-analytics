@@ -1,9 +1,3 @@
-// export const rawFromServer = [ {
-//   rating: 1,
-//   created_at: "2023-09- 14:12:59",
-//   review:
-//     "One of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visitedOne of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visitedOne of the valuable and mostest store for cosmetic range with service and good communication and good behaviour with customers.... once you are visited .....",
-// }]
 export const rawFromServer = [
   {
     rating: 1,

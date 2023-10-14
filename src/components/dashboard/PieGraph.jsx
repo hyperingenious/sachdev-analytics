@@ -61,8 +61,6 @@ function PieGraph() {
             cy="50%"
             innerRadius={pieRadius.innerRadius}
             outerRadius={pieRadius.outerRadius}
-            // outerRadius={85}
-            // innerRadius={55}
             stroke="none"
           >
             {dataAsPerTime.map((entry, index) => (
@@ -86,6 +84,5 @@ function PieGraph() {
     </div>
   );
 }
-
 
 export default PieGraph;

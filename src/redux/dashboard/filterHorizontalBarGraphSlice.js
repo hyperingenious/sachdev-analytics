@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { getLast5Month } from "../../helpers/helper";
-import { growthDataHorizontalBarGraph5Months } from "../../services/dashboard/filterDataForBarGraph";
 
 const initialState = {
+  allData: null,
   last5Months: getLast5Month(),
   selectedMonthIndex: 0,
-  selectedMonthData: growthDataHorizontalBarGraph5Months[0], // default last Month
+  selectedMonthData: null,
 };
 
 const horizontalBarGraphFilterSlice = createSlice({
@@ -14,12 +14,15 @@ const horizontalBarGraphFilterSlice = createSlice({
   reducers: {
     changeHorizontalBarGraphMonth(state, action) {
       state.selectedMonthIndex = action.payload;
-      state.selectedMonthData =
-        growthDataHorizontalBarGraph5Months[action.payload];
+      state.selectedMonthData = state.allData[action.payload];
+    },
+    setInitialData(state, action) {
+      state.allData = action.payload;
+      state.selectedMonthData = action.payload[state.selectedMonthIndex];
     },
   },
 });
 
 export default horizontalBarGraphFilterSlice.reducer;
-export const { changeHorizontalBarGraphMonth } =
+export const { changeHorizontalBarGraphMonth, setInitialData } =
   horizontalBarGraphFilterSlice.actions;

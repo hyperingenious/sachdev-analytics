@@ -1,6 +1,6 @@
-import { rawFromServer } from "../../config/app-data";
+// import { rawFromServer } from "../../config/app-data";
 
-export function starGrowthBarLast5Months() {
+export function starGrowthBarLast5Months(rawFromServer) {
   const initializeAccArray = () => [0, 0, 0, 0, 0];
 
   const accLastMonth = initializeAccArray();
@@ -91,4 +91,4 @@ export function starGrowthBarLast5Months() {
   return theFinalArray;
 }
 
-export const growthDataHorizontalBarGraph5Months = starGrowthBarLast5Months();
+// export const growthDataHorizontalBarGraph5Months = starGrowthBarLast5Months();

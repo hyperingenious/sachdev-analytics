@@ -1,15 +1,22 @@
-import { useEffect } from "react";
-import { starGrowthBarLast5Months } from "./services/dashboard/filterDataForBarGraph";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AppShell from "./pages/AppShell";
 import Dashboard from "./pages/Dashbord";
 import Reviews from "./pages/Reviews";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { fetchReviewData } from "./redux/fetchReviewDataSlice";
 
 function App() {
-  useEffect(function () {
-    starGrowthBarLast5Months();
-  }, []);
+  const dispatch = useDispatch();
+
+  useEffect(
+    function () {
+      dispatch(fetchReviewData());
+    },
+    [dispatch]
+  );
+
   return (
     <BrowserRouter>
       <Routes>

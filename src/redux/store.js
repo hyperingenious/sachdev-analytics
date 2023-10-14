@@ -4,9 +4,13 @@ import filterPieGraphSlice from "./dashboard/filterPieGraphSlice";
 import filterHorizontalBarGraphSlice from "./dashboard/filterHorizontalBarGraphSlice";
 import filterReviewsSlice from "./reviews/filterReviewsSlice";
 import filterSquareGraphSlice from "./dashboard/filterSquareGraphSlice";
+import  { reducer } from "./fetchReviewDataSlice";
 
 const store = configureStore({
   reducer: {
+    //review-data
+    reviewData: reducer,
+
     lineGraphFilter: filterLineGraphSlice,
     pieGraphFilter: filterPieGraphSlice,
     horizontalBarGraphFilter: filterHorizontalBarGraphSlice,

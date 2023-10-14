@@ -5,14 +5,9 @@ import LineGraph from "./LineGraph";
 import SquareGraph from "./SquareGraph";
 
 import { Card, Flex, Group, Text } from "@mantine/core";
-import {
-  IconArrowUpRight,
-  IconEye,
-  IconStar,
-  IconUserBolt,
-} from "@tabler/icons-react";
+import { IconEye, IconStar, IconUserBolt } from "@tabler/icons-react";
 
-function DashboardGrid() {
+function DashboardGrid({ reviewData }) {
   return (
     <div className={styles.container}>
       <Card
