@@ -11,6 +11,7 @@ import {
   changeCombinationFilter,
   changeDataAsPerTime,
   changeIndividualStarFilter,
+  setInitialData,
 } from "../../redux/dashboard/filterLineGraphSlice";
 
 import { colorArray, filterCombinations } from "../../config/app-data";
@@ -21,7 +22,7 @@ import { useEffect, useState } from "react";
 
 import SegmentedButton from "../SegmentedButton";
 
-function LineGraph() {
+function LineGraph({ reviewData }) {
   const dispatch = useDispatch();
   const { combinationFilter, dataAsPerTime, individualStarFilter } =
     useSelector((store) => store.lineGraphFilter);
@@ -33,11 +34,12 @@ function LineGraph() {
 
   useEffect(
     function () {
+      dispatch(setInitialData(reviewData));
       window.innerWidth < 600
         ? setLineGraphDimensions({ width: "100%", height: 140 })
         : setLineGraphDimensions({ width: "100%", height: 225 });
     },
-    [setLineGraphDimensions]
+    [setLineGraphDimensions, dispatch, reviewData]
   );
 
   return (
@@ -47,27 +49,25 @@ function LineGraph() {
         individualStarFilter={individualStarFilter}
         combinationFilter={combinationFilter}
       />
-      <ResponsiveContainer
-        height={lineGraphDimensions.height}
-        width={lineGraphDimensions.width}
-      >
-        <AreaChart data={dataAsPerTime} margin={{ left: -19, right: -30 }}>
-          <XAxis tick={{ fontSize: 12 }} dataKey={"label"} />
-          <YAxis
-            tick={{ fontSize: 12 }}
-            unit={"%"}
-            axisLine={false}
-            tickLine={false}
-            domain={[0, 100]}
-          />
 
-          <CartesianGrid opacity={0.2} vertical={false} />
-
-          <Tooltip content={<CustomTooltip />} />
-
-          {combinationFilter &&
-            combinationFilter.map((combi) => (
-              <>
+      {dataAsPerTime && (
+        <ResponsiveContainer
+          height={lineGraphDimensions.height}
+          width={lineGraphDimensions.width}
+        >
+          <AreaChart data={dataAsPerTime} margin={{ left: -19, right: -30 }}>
+            <XAxis tick={{ fontSize: 12 }} dataKey={"label"} />
+            <YAxis
+              tick={{ fontSize: 12 }}
+              unit={"%"}
+              axisLine={false}
+              tickLine={false}
+              domain={[0, 100]}
+            />{" "}
+            <CartesianGrid opacity={0.2} vertical={false} />
+            <Tooltip content={<CustomTooltip />} />
+            {combinationFilter &&
+              combinationFilter.map((combi) => (
                 <Area
                   key={combi}
                   name={`${combi} Star`}
@@ -78,40 +78,37 @@ function LineGraph() {
                   stroke={colorArray[combi - 1]}
                   unit={"%"}
                 />
+              ))}
+            {individualStarFilter && (
+              <>
+                <defs>
+                  <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
+                    <stop
+                      offset="0%"
+                      stopColor={colorArray[individualStarFilter]}
+                      stopOpacity={0.4}
+                    />
+                    <stop
+                      offset="75%"
+                      stopColor={colorArray[individualStarFilter]}
+                      stopOpacity={0.05}
+                    />
+                  </linearGradient>
+                </defs>
+                <Area
+                  name={`${individualStarFilter} Star`}
+                  dataKey={`avg_${individualStarFilter}`}
+                  type={"monotone"}
+                  strokeWidth={2}
+                  fill="url(#color)"
+                  stroke={colorArray[individualStarFilter]}
+                  unit={"%"}
+                />
               </>
-            ))}
-
-          {individualStarFilter && (
-            <>
-              <defs>
-                <linearGradient id="color" x1="0" y1="0" x2="0" y2="1">
-                  <stop
-                    offset="0%"
-                    stopColor={colorArray[individualStarFilter]}
-                    stopOpacity={0.4}
-                  />
-                  <stop
-                    offset="75%"
-                    stopColor={colorArray[individualStarFilter]}
-                    stopOpacity={0.05}
-                  />
-                </linearGradient>
-              </defs>
-              <Area
-                name={`${individualStarFilter} Star`}
-                dataKey={`avg_${individualStarFilter}`}
-                type={"monotone"}
-                strokeWidth={2}
-                fill="url(#color)"
-                stroke={colorArray[individualStarFilter]}
-                unit={"%"}
-              />
-            </>
-          )}
-
-          {/* <Legend iconType="circle" /> */}
-        </AreaChart>
-      </ResponsiveContainer>
+            )}
+          </AreaChart>
+        </ResponsiveContainer>
+      )}
     </div>
   );
 }
@@ -155,7 +152,7 @@ function LineGraphFilterBar({
   );
 }
 
-function CustomTooltip({ action, payload, label }) {
+function CustomTooltip({ _, payload, label }) {
   return (
     <Card padding="xs" radius="sm" withBorder>
       <Label label={label} />
@@ -192,4 +189,5 @@ function StarAverage({ payload }) {
     </>
   );
 }
+
 export default LineGraph;

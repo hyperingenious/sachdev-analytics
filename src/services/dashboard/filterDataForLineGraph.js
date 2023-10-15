@@ -1,7 +1,7 @@
-import { monthNames, rawFromServer } from "../../config/app-data";
+import { monthNames } from "../../config/app-data";
 
 // average rating "all time" of all stars
-function starGrowthLineAllTime() {
+export function starGrowthLineAllTime(rawFromServer) {
   let acc = [0, 0, 0, 0, 0];
 
   const growthRawData = rawFromServer.map((graph, index) => {
@@ -40,7 +40,7 @@ function starGrowthLineAllTime() {
 }
 
 // average rating of last **7 days**
-function starGrowthLineLast7Days() {
+export function starGrowthLineLast7Days(rawFromServer) {
   const presentDateMinus7Days = new Date(
     new Date().setDate(new Date().getDate() - 7)
   );
@@ -83,7 +83,7 @@ function starGrowthLineLast7Days() {
 }
 
 // average rating of last MONTH
-function starGrowthLineLastMonth() {
+export function starGrowthLineLastMonth(rawFromServer) {
   // Date of last 30th day
   const presentDateMinus30Days = new Date(
     new Date().setDate(new Date().getDate() - 30)
@@ -136,7 +136,3 @@ function starGrowthLineLastMonth() {
 
   return finalLastMonthData;
 }
-
-export const growthDataAllTime = starGrowthLineAllTime();
-export const growthDataLast7Days = starGrowthLineLast7Days();
-export const growthDataLastMonth = starGrowthLineLastMonth();

@@ -1,33 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  growthDataAllTime,
-  growthDataLast7Days,
-  growthDataLastMonth,
+  starGrowthLineAllTime,
+  starGrowthLineLast7Days,
+  starGrowthLineLastMonth,
 } from "../../services/dashboard/filterDataForLineGraph";
 
 const initialState = {
-  dataAsPerTime: growthDataAllTime,
-  timeFilter: "all-time",
-  combinationFilter: false, //total 10, 2-digit combinations of 1,2,3,4,5 
+  allData: null,
+  dataAsPerTime: null,
+  timeFilter: null,
+  combinationFilter: false, //total 10, 2-digit combinations of 1,2,3,4,5
   individualStarFilter: 1, //(default is false) 1 | 2 | 3 | 4 | 5
 };
 
+/*
+Initial Setup
+  -dataAsPerTime: allTime
+  -timeFilter: allTime
+ */
 const lineGraphFilterSlice = createSlice({
   name: "lineGraphFilterSlice",
   initialState,
   reducers: {
+    setInitialData(state, action) {
+      state.allData = action.payload;
+      state.dataAsPerTime = starGrowthLineAllTime(action.payload);
+      state.timeFilter = "all-time";
+    },
     changeDataAsPerTime(state, action) {
       if (action.payload === "all-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = growthDataAllTime;
+        state.dataAsPerTime = starGrowthLineAllTime(state.allData);
       }
       if (action.payload === "7-day-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = growthDataLast7Days;
+        state.dataAsPerTime = starGrowthLineLast7Days(state.allData);
       }
       if (action.payload === "30-day-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = growthDataLastMonth;
+        state.dataAsPerTime = starGrowthLineLastMonth(state.allData);
       }
     },
     changeCombinationFilter(state, action) {
@@ -45,6 +56,7 @@ const lineGraphFilterSlice = createSlice({
 
 export default lineGraphFilterSlice.reducer;
 export const {
+  setInitialData,
   changeDataAsPerTime,
   changeCombinationFilter,
   changeIndividualStarFilter,
