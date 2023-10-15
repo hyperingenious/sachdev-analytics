@@ -9,15 +9,10 @@ import { Group, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { starGrowthBarLast5Months } from "../../services/dashboard/filterDataForBarGraph";
 
-function HorizontalBarGraph() {
-  const {
-    horizontalBarGraphFilter: {
-      selectedMonthData,
-      last5Months,
-      selectedMonthIndex,
-    },
-    reviewData: { data },
-  } = useSelector((store) => store);
+function HorizontalBarGraph({ reviewData }) {
+  const { selectedMonthData, last5Months, selectedMonthIndex } = useSelector(
+    (store) => store.horizontalBarGraphFilter
+  );
 
   const dispatch = useDispatch();
 
@@ -29,14 +24,14 @@ function HorizontalBarGraph() {
   useEffect(
     function () {
       // Set initial data to fullData
-      dispatch(setInitialData(starGrowthBarLast5Months(data)));
+      dispatch(setInitialData(starGrowthBarLast5Months(reviewData)));
 
       // can't use media queries instead, cuz dimensions only accepts props
       window.innerWidth < 600
         ? setHBarDimensions({ width: 290, height: 200 })
         : setHBarDimensions({ width: 230, height: 180 });
     },
-    [setHBarDimensions, dispatch, data]
+    [setHBarDimensions, dispatch, reviewData]
   );
 
   return (

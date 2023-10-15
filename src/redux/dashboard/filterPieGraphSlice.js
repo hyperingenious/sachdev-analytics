@@ -1,35 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  last30DaysPieData,
-  last7DaysPieData,
-  lastAllDaysPieData,
+  starPieDataForLast7Days,
+  starPieDataForLast30Days,
+  starPieDataForLastAllDays,
 } from "../../services/dashboard/filterDataForPieGraph";
 
 const initialState = {
-  dataAsPerTime: last7DaysPieData,
-  timeFilter: "7-day-time",
+  allData: null,
+  dataAsPerTime: null,
+  timeFilter: null,
 };
 
 const pieGraphFilterSlice = createSlice({
   name: "pieGraphFilterSlice",
   initialState,
   reducers: {
+    setInitialData(state, action) {
+      state.allData = action.payload;
+      state.dataAsPerTime = starPieDataForLast7Days(action.payload);
+      state.timeFilter = "7-day-time";
+    },
     changePieDataAsPerTime(state, action) {
       if (action.payload === "7-day-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = last7DaysPieData;
+        state.dataAsPerTime = starPieDataForLast7Days(state.allData);
       }
       if (action.payload === "30-day-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = last30DaysPieData;
+        state.dataAsPerTime = starPieDataForLast30Days(state.allData);
       }
       if (action.payload === "all-time") {
         state.timeFilter = action.payload;
-        state.dataAsPerTime = lastAllDaysPieData;
+        state.dataAsPerTime = starPieDataForLastAllDays(state.allData);
       }
     },
   },
 });
 
 export default pieGraphFilterSlice.reducer;
-export const { changePieDataAsPerTime } = pieGraphFilterSlice.actions;
+export const { changePieDataAsPerTime, setInitialData } =
+  pieGraphFilterSlice.actions;

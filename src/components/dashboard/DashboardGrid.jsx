@@ -14,14 +14,14 @@ function DashboardGrid({ reviewData }) {
         withBorder
         className={`${styles.card} ${styles.gridRowSpan2} ${styles.graphSpaccing}`}
       >
-        <PieGraph />
+        <PieGraph reviewData={reviewData} />
       </Card>
 
       <Card
         withBorder
         className={`${styles.card} ${styles.gridRowSpan2} ${styles.graphSpaccing}`}
       >
-        <HorizontalBarGraph />
+        <HorizontalBarGraph reviewData={reviewData} />
       </Card>
 
       <Card withBorder className={`${styles.card} ${styles.statCard}`}>
@@ -82,11 +82,11 @@ function DashboardGrid({ reviewData }) {
         withBorder
         className={`${styles.card} ${styles.gridColumnSpan2} ${styles.gridRowSpan2} ${styles.graphSpaccing}`}
       >
-        <LineGraph />
+        <LineGraph reviewData={reviewData} />
       </Card>
 
       <Card withBorder className={`${styles.card} ${styles.gridRowSpan2}`}>
-        <SquareGraph />
+        <SquareGraph reviewData={reviewData} />
       </Card>
     </div>
   );
