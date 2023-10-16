@@ -1,15 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { last300Squares } from "../../services/dashboard/filterSquareGraph";
+import { create300Square } from "../../services/dashboard/filterSquareGraph";
 
 const initialState = {
-  three100Squares: last300Squares,
+  three100Squares: null,
 };
 
 const filterSquareGraphSlice = createSlice({
   name: "filterSquareGraphSlice",
   initialState,
-  reducers: {},
+  reducers: {
+    setInitialState(state, action) {
+      state.three100Squares = create300Square(action.payload);
+    },
+  },
 });
 
 export default filterSquareGraphSlice.reducer;
-export const { three100Squares } = filterSquareGraphSlice.actions;
+export const { setInitialState } = filterSquareGraphSlice.actions;

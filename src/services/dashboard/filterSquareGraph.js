@@ -1,6 +1,4 @@
-import { rawFromServer } from "../../config/app-data";
-
-function create300Square() {
+export function create300Square(rawFromServer) {
   const len = rawFromServer.length;
   let sq = [];
 
@@ -16,12 +14,10 @@ function create300Square() {
 
   if (len < 304) {
     const difference = 304 - len;
-    
+
     Array.from({ length: difference }, () => 0).forEach((el) => sq.push(el));
     rawFromServer.forEach((el) => sq.unshift(el.rating));
 
     return sq;
   }
 }
-
-export const last300Squares = create300Square();
