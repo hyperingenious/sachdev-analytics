@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useSearchParams } from "react-router-dom";
 
 import AppShell from "./pages/AppShell";
 import Dashboard from "./pages/Dashbord";

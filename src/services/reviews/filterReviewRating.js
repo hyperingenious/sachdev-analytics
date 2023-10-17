@@ -23,7 +23,7 @@ export function filterReviewRating(allTimeData, ratingFilter, timeFilter) {
   if (ratingFilter === 15) {
     return filteredDataOnTime;
   }
-
+  
   const filterAsPerRating = filteredDataOnTime.filter(
     (data) => data.rating === ratingFilter
   );

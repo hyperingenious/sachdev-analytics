@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { rawFromServer } from "../../config/app-data";
 import {
   filterAllTimeData,
   filterLast30DayData,
@@ -7,34 +6,49 @@ import {
 } from "../../services/reviews/filterReviewTime";
 import { filterReviewRating } from "../../services/reviews/filterReviewRating";
 
+// const initialState = {
+//   reviewData: rawFromServer,
+//   timeFilter: "all-time", // all-time | 30-day-time | 7-day-time
+//   ratingFilter: 15, // 15 | 1 | 2 | 3 | 4 | 5
+// };
 const initialState = {
-  reviewData: rawFromServer,
-  timeFilter: "all-time", // all-time | 30-day-time | 7-day-time
-  ratingFilter: 15, // 15 | 1 | 2 | 3 | 4 | 5
+  allData: null,
+  reviewData: null,
+  timeFilter: null, // all-time | 30-day-time | 7-day-time
+  ratingFilter: null, // 15 | 1 | 2 | 3 | 4 | 5
 };
 
 const reviewFilterSlice = createSlice({
   name: "reviewFilterSlice",
   initialState,
   reducers: {
+    setInitialData(state, action) {
+      state.allData = action.payload;
+      state.reviewData = action.payload;
+      state.timeFilter = "all-time";
+      state.ratingFilter = 15;
+    },
     changeReviewDataWithTime(state, action) {
       if (action.payload === "all-time") {
-        state.timeFilter = "all-time";
-        state.reviewData = filterAllTimeData(rawFromServer, state.ratingFilter);
+        state.timeFilter = action.payload;
+        state.reviewData = filterAllTimeData(
+          state.allData,
+          state.ratingFilter
+        );
       }
 
       if (action.payload === "30-day-time") {
-        state.timeFilter = "30-day-time";
+        state.timeFilter = action.payload;
         state.reviewData = filterLast30DayData(
-          rawFromServer,
+          state.allData,
           state.ratingFilter
         );
       }
 
       if (action.payload === "7-day-time") {
-        state.timeFilter = "7-day-time";
+        state.timeFilter = action.payload;
         state.reviewData = filterLast7DayData(
-          rawFromServer,
+          state.allData,
           state.ratingFilter
         );
       }
@@ -42,7 +56,7 @@ const reviewFilterSlice = createSlice({
     changeReviewDataWithRating(state, action) {
       state.ratingFilter = action.payload;
       state.reviewData = filterReviewRating(
-        rawFromServer,
+        state.reviewData,
         action.payload,
         state.timeFilter
       );
@@ -51,5 +65,8 @@ const reviewFilterSlice = createSlice({
 });
 
 export default reviewFilterSlice.reducer;
-export const { changeReviewDataWithTime, changeReviewDataWithRating } =
-  reviewFilterSlice.actions;
+export const {
+  setInitialData,
+  changeReviewDataWithTime,
+  changeReviewDataWithRating,
+} = reviewFilterSlice.actions;

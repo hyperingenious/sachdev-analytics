@@ -2,7 +2,7 @@ import { todayMinusWhat } from "../../helpers/helper";
 
 /**
  * @param {object[]} allTimeData recives JSON object of all time data
- * @param {number} ratingFilter 15 | 1 | 2 | 3 | 4 | 5
+ * @param {number} ratingFilter which is existing, 15 | 1 | 2 | 3 | 4 | 5 
  * @returns {object[]} all time review data on basis of the rating number
  */
 export function filterAllTimeData(allTimeData, ratingFilter) {

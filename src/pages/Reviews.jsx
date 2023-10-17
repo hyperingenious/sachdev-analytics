@@ -5,19 +5,30 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeReviewDataWithRating,
   changeReviewDataWithTime,
+  setInitialData,
 } from "../redux/reviews/filterReviewsSlice";
+import { useEffect } from "react";
 
 function Reviews() {
-  const { reviewData } = useSelector((state) => state.reviewsFilter);
+  const { data: reviewData } = useSelector((store) => store.reviewData);
+  const { reviewData: reviewState } = useSelector(
+    (store) => store.reviewsFilter
+  );
   const dispatch = useDispatch();
+
+  useEffect(
+    function () {
+      dispatch(setInitialData(reviewData));
+    },
+    [dispatch, reviewData]
+  );
   return (
     <>
       <div
         className="topSection"
         style={{
           display: "flex",
-          gap: "var(--mantine-spacing-md)",
-          
+          gap: "var(--mantine-sapcing-md)",
         }}
       >
         <Dropdown
@@ -29,24 +40,26 @@ function Reviews() {
         <SegmentedButton
           onChange={(arg) => dispatch(changeReviewDataWithTime(arg))}
           data={[
+            { label: "All time", value: "all-time" },
             { label: "7D", value: "7-day-time" },
             { label: "1M", value: "30-day-time" },
-            { label: "All time", value: "all-time" },
           ]}
         />
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "var(--mantine-spacing-md)",
-          marginTop: 'var(--mantine-spacing-md)'
-        }}
-      >
-        {reviewData.map((data) => (
-          <ReviewCard data={data} key={data} />
-        ))}
-      </div>
+      {reviewState && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "var(--mantine-spacing-md)",
+            marginTop: "var(--mantine-spacing-md)",
+          }}
+        >
+          {reviewState.map((data, index) => (
+            <ReviewCard data={data} key={data + index} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
