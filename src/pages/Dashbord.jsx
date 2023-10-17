@@ -3,11 +3,11 @@ import DashboardGrid from "../components/dashboard/DashboardGrid";
 import Loader from "../components/Loader";
 
 function Dashbord() {
-  const { data, status, error } = useSelector((store) => store.reviewData);
+  const { data, status, error , visitorCount} = useSelector((store) => store.reviewData);
   return (
     <>
       {status === "loading" && <Loader />}
-      {status === "finished" && <DashboardGrid reviewData={data} />}
+      {status === "finished" && <DashboardGrid reviewData={data} totalVisitors={visitorCount} />}
       {status === "error" && <h1>{error}</h1>}
     </>
   );

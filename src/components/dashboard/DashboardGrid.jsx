@@ -7,7 +7,12 @@ import SquareGraph from "./SquareGraph";
 import { Card, Flex, Group, Text } from "@mantine/core";
 import { IconEye, IconStar, IconUserBolt } from "@tabler/icons-react";
 
-function DashboardGrid({ reviewData }) {
+function DashboardGrid({ reviewData, totalVisitors }) {
+  /**
+   *Calculating total number of stars
+   */
+  const totalStars = reviewData.length;
+
   return (
     <div className={styles.container}>
       <Card
@@ -32,11 +37,10 @@ function DashboardGrid({ reviewData }) {
             </Text>
             <IconUserBolt size="1rem" stroke={1.5} />
           </Group>
-
           <Flex direction={"column"} mt={22}>
             <Group align="flex-end" gap="xs">
               <Text fz={"xl"} fw={600}>
-                1,400
+                {totalStars}
               </Text>
               <Text c="teal" fz="sm" fw={500}>
                 <IconStar size="1rem" stroke={1.5} />
@@ -59,11 +63,10 @@ function DashboardGrid({ reviewData }) {
             </Text>
             <IconUserBolt size="1rem" stroke={1.5} />
           </Group>
-
           <Flex direction={"column"} mt={22}>
             <Group align="flex-end" gap="xs">
               <Text fz={"xl"} fw={600}>
-                600,234{" "}
+               {totalVisitors}
               </Text>
               <Text c="teal" fz="sm" fw={500}>
                 <span>

@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllReviews } from "../services/supabase/getAllReviews";
+import { getAllReviewsAndVisitorsCount } from "../services/supabase/getAllReviews";
 
 export const fetchReviewData = createAsyncThunk(
   "reviewData/fetchReviewData",
   async function () {
-    const reviews = await getAllReviews();
+    const reviews = await getAllReviewsAndVisitorsCount();
     return reviews;
   }
 );
 
 const initialState = {
   data: null,
+  visitorCount: null,
   status: "idle", // 'idle' | 'loading' | 'finished' | 'error'
   error: null,
 };
@@ -26,7 +27,8 @@ const reviewDataSlice = createSlice({
       })
       .addCase(fetchReviewData.fulfilled, (state, action) => {
         state.status = "finished";
-        state.data = action.payload;
+        state.data = action.payload.reviews;
+        state.visitorCount = action.payload.visitors;
       })
       .addCase(fetchReviewData.rejected, (state, action) => {
         state.status = "error";
