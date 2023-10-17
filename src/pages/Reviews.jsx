@@ -11,7 +11,7 @@ import { useEffect } from "react";
 
 function Reviews() {
   const { data: reviewData } = useSelector((store) => store.reviewData);
-  const { reviewData: reviewState } = useSelector(
+  const { reviewData: reviewState, ratingFilter } = useSelector(
     (store) => store.reviewsFilter
   );
   const dispatch = useDispatch();
@@ -28,10 +28,11 @@ function Reviews() {
         className="topSection"
         style={{
           display: "flex",
-          gap: "var(--mantine-sapcing-md)",
+          gap: "var(--mantine-spacing-md)",
         }}
       >
         <Dropdown
+          valueType={ratingFilter}
           name={"Rating"}
           argOptions={[1, 2, 3, 4, 5, 15]}
           dropdownOptions={[1, 2, 3, 4, 5, "All stars"]}
