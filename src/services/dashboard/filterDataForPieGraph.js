@@ -1,5 +1,4 @@
 export function starPieDataForLast7Days(rawFromServer) {
-
   const date7DaysAgo = new Date(new Date().setDate(new Date().getDate() - 7));
 
   const filterDataAsPerDate = rawFromServer.filter(
@@ -38,15 +37,13 @@ export function starPieDataForLast30Days(rawFromServer) {
   ];
 
   filterDataAsPerDate.reduce((acc, current) => {
-    acc[current.rating - 1].value += current.rating;
+    acc[current.rating - 1].value += 1;
     return acc;
   }, finalPieData30Days);
-
   return finalPieData30Days;
 }
 
 export function starPieDataForLastAllDays(rawFromServer) {
-
   const finalPieDataAllTime = [
     { name: "1 Star", value: 0 },
     { name: "2 Star", value: 0 },
@@ -56,14 +53,9 @@ export function starPieDataForLastAllDays(rawFromServer) {
   ];
 
   for (let i = 0; i < rawFromServer.length; i++) {
-    finalPieDataAllTime[rawFromServer[i].rating - 1].value +=
-      rawFromServer[i].rating;
+    finalPieDataAllTime[rawFromServer[i].rating - 1].value += 1;
   }
 
-  // rawFromServer.reduce((acc, current) => {
-  //   acc[current.rating - 1].value += current.rating;
-  //   return acc;
-  // }, finalPieDataAllTime);
   console.log(finalPieDataAllTime);
 
   return finalPieDataAllTime;
