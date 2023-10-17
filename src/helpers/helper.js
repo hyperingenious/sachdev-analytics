@@ -26,6 +26,33 @@ export function todayMinusWhat(daysBack) {
   return pastDate;
 }
 
+/**
+ * Initializes an array representing a star rating storage system.
+ *
+ * @returns {Array} An array of star objects with initial values.
+ *
+ * @example
+ * const starStorage = initializeStarStorageArray();
+ * // Returns:
+ * // [
+ * //   { name: '1 Star', value: 0 },
+ * //   { name: '2 Star', value: 0 },
+ * //   { name: '3 Star', value: 0 },
+ * //   { name: '4 Star', value: 0 },
+ * //   { name: '5 Star', value: 0 }
+ * // ]
+ */
+export function initializeStarStorageArray() {
+  return Array.from({ length: 5 }, (_, index) => {
+    return { name: `${index + 1} Star`, value: 0 };
+  });
+}
+
+/**
+ * Date formater
+ * @param date Javascript Date
+ * @returns A formated date string eg: 12 November 2023
+ */
 export function formatDate(date) {
   const usableDate = new Date(date);
 
