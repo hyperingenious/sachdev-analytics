@@ -5,7 +5,7 @@ import LineGraph from "./LineGraph";
 import SquareGraph from "./SquareGraph";
 
 import { Card, Flex, Group, Text } from "@mantine/core";
-import { IconStar, IconUserBolt } from "@tabler/icons-react";
+import { IconEye, IconStar, IconUserBolt } from "@tabler/icons-react";
 
 function DashboardGrid({ reviewData }) {
   return (
@@ -23,57 +23,72 @@ function DashboardGrid({ reviewData }) {
       >
         <HorizontalBarGraph reviewData={reviewData} />
       </Card>
-      <StatsCard
-        header={"Total Stars"}
-        data={"stardata"}
-        desc={"Total number of stars all time"}
-      />
-      <StatsCard
-        header={"Total Visitors"}
-        data={"visitorData"}
-        desc={"Total visitors, since all time"}
-      />
+
+      <Card withBorder className={`${styles.card} ${styles.statCard}`}>
+        <Flex mih={50} justify="flex-start" direction="column" wrap="nowrap">
+          <Group justify="space-between">
+            <Text size="xs" c="dimmed" fw={900}>
+              Total Stars{" "}
+            </Text>
+            <IconUserBolt size="1rem" stroke={1.5} />
+          </Group>
+
+          <Flex direction={"column"} mt={22}>
+            <Group align="flex-end" gap="xs">
+              <Text fz={"xl"} fw={600}>
+                1,400
+              </Text>
+              <Text c="teal" fz="sm" fw={500}>
+                <IconStar size="1rem" stroke={1.5} />
+                <IconStar size="1rem" stroke={1.5} />
+                <IconStar size="1rem" stroke={1.5} />
+              </Text>
+            </Group>{" "}
+            <Text fz="xs" c="dimmed" mt={0}>
+              Total number of stars all time{" "}
+            </Text>
+          </Flex>
+        </Flex>{" "}
+      </Card>
+
+      <Card withBorder className={`${styles.card} ${styles.statCard}`}>
+        <Flex mih={50} justify="flex-start" direction="column" wrap="nowrap">
+          <Group justify="space-between">
+            <Text size="xs" c="dimmed" fw={900}>
+              Total Visitors{" "}
+            </Text>
+            <IconUserBolt size="1rem" stroke={1.5} />
+          </Group>
+
+          <Flex direction={"column"} mt={22}>
+            <Group align="flex-end" gap="xs">
+              <Text fz={"xl"} fw={600}>
+                600,234{" "}
+              </Text>
+              <Text c="teal" fz="sm" fw={500}>
+                <span>
+                  <IconEye size="1rem" stroke={1.5} />
+                </span>
+              </Text>
+            </Group>{" "}
+            <Text fz="xs" c="dimmed" mt={0}>
+              Total visitors, since all time{" "}
+            </Text>
+          </Flex>
+        </Flex>{" "}
+      </Card>
+
       <Card
         withBorder
         className={`${styles.card} ${styles.gridColumnSpan2} ${styles.gridRowSpan2} ${styles.graphSpaccing}`}
       >
         <LineGraph reviewData={reviewData} />
       </Card>
+
       <Card withBorder className={`${styles.card} ${styles.gridRowSpan2}`}>
         <SquareGraph reviewData={reviewData} />
       </Card>
     </div>
-  );
-}
-
-function StatsCard({ header, data, desc }) {
-  return (
-    <Card withBorder className={`${styles.card} ${styles.statCard}`}>
-      <Flex mih={50} justify="flex-start" direction="column" wrap="nowrap">
-        <Group justify="space-between">
-          <Text size="xs" c="dimmed" fw={900}>
-            {header}
-          </Text>
-          <IconUserBolt size="1rem" stroke={1.5} />
-        </Group>
-
-        <Flex direction={"column"} mt={22}>
-          <Group align="flex-end" gap="xs">
-            <Text fz={"xl"} fw={600}>
-              {data}{" "}
-            </Text>
-            <Text c="teal" fz="sm" fw={500}>
-              <IconStar size="1rem" stroke={1.5} />
-              <IconStar size="1rem" stroke={1.5} />
-              <IconStar size="1rem" stroke={1.5} />
-            </Text>
-          </Group>{" "}
-          <Text fz="xs" c="dimmed" mt={0}>
-            {desc}{" "}
-          </Text>
-        </Flex>
-      </Flex>{" "}
-    </Card>
   );
 }
 
