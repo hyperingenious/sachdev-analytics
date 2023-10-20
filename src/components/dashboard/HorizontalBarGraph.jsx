@@ -4,7 +4,7 @@ import {
   changeHorizontalBarGraphMonth,
   setInitialData,
 } from "../../redux/dashboard/filterHorizontalBarGraphSlice";
-import { Dropdown } from "../Dropdown";
+import { Dropdown } from "../ui/Dropdown";
 import { Group, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { starGrowthBarLast5Months } from "../../services/dashboard/filterDataForBarGraph";

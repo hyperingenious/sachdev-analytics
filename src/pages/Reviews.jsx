@@ -1,5 +1,7 @@
-import { Dropdown } from "../components/Dropdown";
-import SegmentedButton from "../components/SegmentedButton";
+import { Dropdown } from "../components/ui/Dropdown";
+import SegmentedButton from "../components/ui/SegmentedButton";
+
+
 import ReviewCard from "../components/reviews/ReviewCard";
 import { useDispatch, useSelector } from "react-redux";
 import {

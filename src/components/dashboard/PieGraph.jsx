@@ -8,8 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { changePieDataAsPerTime } from "../../redux/dashboard/filterPieGraphSlice";
-import { Dropdown } from "../Dropdown";
-import { Group, Text } from "@mantine/core";
+import { Dropdown } from "../ui/Dropdown";import { Group, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { setInitialData } from "../../redux/dashboard/filterPieGraphSlice";
 

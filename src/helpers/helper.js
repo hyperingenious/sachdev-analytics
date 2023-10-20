@@ -41,7 +41,7 @@ export function todayMinusWhat(daysBack) {
  * //   { name: '4 Star', value: 0 },
  * //   { name: '5 Star', value: 0 }
  * // ]
- */
+*/
 export function initializeStarStorageArray() {
   return Array.from({ length: 5 }, (_, index) => {
     return { name: `${index + 1} Star`, value: 0 };

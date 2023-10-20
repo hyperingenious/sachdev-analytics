@@ -28,6 +28,18 @@ export function starPieDataForLast30Days(rawFromServer) {
   return finalPieData30Days;
 }
 
+/**
+ * @param {Array} rawFromServer rating data received from the server
+ * @returns an array of objects which contains all the star data for all the time
+ *   @example
+ *  [
+ *   { name: '1 Star', value: 0 },
+ *   { name: '2 Star', value: 0 },
+ *   { name: '3 Star', value: 0 },
+ *   { name: '4 Star', value: 0 },
+ *   { name: '5 Star', value: 0 }
+ *  ]
+ */
 export function starPieDataForLastAllDays(rawFromServer) {
   const finalPieDataAllTime = initializeStarStorageArray();
   for (let i = 0; i < rawFromServer.length; i++) {

@@ -16,11 +16,10 @@ import {
 
 import { colorArray, filterCombinations } from "../../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
-import { Dropdown } from "../Dropdown";
-import { Box, Card, Text } from "@mantine/core";
+import { Dropdown } from "../ui/Dropdown";import { Box, Card, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
-import SegmentedButton from "../SegmentedButton";
+import SegmentedButton from "../ui/SegmentedButton";
 
 function LineGraph({ reviewData }) {
   const dispatch = useDispatch();
