@@ -12,7 +12,7 @@ export async function login({ email, password }) {
 export async function getUser() {
   const { data: session } = await supabase.auth.getSession();
 
-  if (!session.session) throw Error();
+  if (!session.session) throw Error('Session not found, login in again');
 
   await supabase.auth.getUser();
 

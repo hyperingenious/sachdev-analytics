@@ -38,17 +38,18 @@ export default function SignUp() {
     dispatch(resetAuthState());
     dispatch(fetchLogin(credentials));
 
-    if (error) {
-      toast.error("Invalid Credentials");
-      return;
-    }
-
     setCredentials((cred) => ({ ...cred, email: "", password: "" }));
   }
 
   useEffect(
     function () {
       dispatch(fetchSession());
+
+      if (error) {
+        toast.error(error);
+        return;
+      }
+
       if (authenticated) navigate("/dashboard");
     },
     [error, authenticated, navigate, dispatch]

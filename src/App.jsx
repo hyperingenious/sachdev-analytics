@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchReviewData } from "./redux/fetchReviewDataSlice";
 
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import AppShell from "./pages/AppShell";
 import Dashboard from "./pages/Dashbord";
@@ -12,12 +12,13 @@ import ProtectedRoute from "./components/ui/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
+  const { authenticated } = useSelector((store) => store.auth);
 
   useEffect(
     function () {
-      dispatch(fetchReviewData());
+      if (authenticated) dispatch(fetchReviewData());
     },
-    [dispatch]
+    [dispatch, authenticated]
   );
 
   return (

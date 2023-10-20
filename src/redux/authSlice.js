@@ -17,7 +17,7 @@ export const fetchSession = createAsyncThunk("auth/session", async function () {
 const initialState = {
   authenticated: false,
   status: "idle",
-  error: null,
+  error: false,
 };
 
 const authSlice = createSlice({
@@ -26,7 +26,7 @@ const authSlice = createSlice({
   reducers: {
     resetAuthState(state) {
       state.authenticated = false;
-      state.error = null;
+      state.error = false;
       state.status = "idle";
     },
   },
@@ -39,9 +39,9 @@ const authSlice = createSlice({
         state.authenticated = true;
         state.status = "finished";
       })
-      .addCase(fetchLogin.rejected, (state) => {
+      .addCase(fetchLogin.rejected, (state, { error }) => {
         state.status = "idle";
-        state.error = true;
+        state.error = error.message;
       })
       .addCase(fetchSession.pending, (state) => {
         state.status = "loading";
@@ -50,9 +50,9 @@ const authSlice = createSlice({
         state.authenticated = true;
         state.status = "finished";
       })
-      .addCase(fetchSession.rejected, (state) => {
+      .addCase(fetchSession.rejected, (state, { error }) => {
         state.status = "idle";
-        state.error = true;
+        state.error = error.message;
       });
   },
 });
