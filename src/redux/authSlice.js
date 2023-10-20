@@ -15,7 +15,7 @@ export const fetchSession = createAsyncThunk("auth/session", async function () {
 });
 
 const initialState = {
-  authenticated: null,
+  authenticated: false,
   status: "idle",
   error: null,
 };
@@ -25,7 +25,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     resetAuthState(state) {
-      state.authenticated = null;
+      state.authenticated = false;
       state.error = null;
       state.status = "idle";
     },

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  IconSwitchHorizontal,
   IconLogout,
   IconTextCaption,
   IconLayoutDashboard,
@@ -32,9 +31,7 @@ export default function NavbarSimple() {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>{links}</div>
-
       <div className={classes.footer}>
-
         <a
           href="#"
           className={classes.link}

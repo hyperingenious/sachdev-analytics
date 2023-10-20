@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchReviewData } from "./redux/fetchReviewDataSlice";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
 import AppShell from "./pages/AppShell";
 import Dashboard from "./pages/Dashbord";
@@ -11,7 +11,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 
 function App() {
-  const dispatch = useDispatch();     
+  const dispatch = useDispatch();
 
   useEffect(
     function () {

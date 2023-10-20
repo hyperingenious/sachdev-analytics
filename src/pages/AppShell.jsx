@@ -7,16 +7,21 @@ import { AppShell as MantineAppShell, Burger } from "@mantine/core";
 
 import NavbarSimple from "../components/ui/NavbarSimple";
 import ActionToggle from "../components/ui/ActionToggle";
+import { useSelector } from "react-redux";
 
 export default function AppShell() {
   const [opened, { toggle }] = useDisclosure();
+  const { authenticated } = useSelector((store) => store.auth);
+
   const navigate = useNavigate();
 
   useEffect(
     function () {
-      if (window.location.pathname === "/") navigate("/dashboard");
+      if (window.location.pathname === "/" && authenticated)
+        navigate("/dashboard");
+      if (!authenticated) navigate("/login");
     },
-    [navigate]
+    [navigate, authenticated]
   );
 
   return (
