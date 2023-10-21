@@ -49,7 +49,7 @@ export default function AppShell() {
         </MantineAppShell.Header>
 
         <MantineAppShell.Navbar p="md">
-          <NavbarSimple />
+          <NavbarSimple toggle={toggle} />
         </MantineAppShell.Navbar>
 
         <MantineAppShell.Main>

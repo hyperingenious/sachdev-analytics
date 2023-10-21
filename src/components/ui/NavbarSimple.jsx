@@ -14,7 +14,7 @@ const data = [
   { link: "/reviews", label: "Reviews", icon: IconTextCaption },
 ];
 
-export default function NavbarSimple() {
+export default function NavbarSimple({ toggle }) {
   const [active, setActive] = useState("Dashboard");
   const dispatch = useDispatch();
 
@@ -24,7 +24,10 @@ export default function NavbarSimple() {
       className={classes.link}
       data-active={item.label === active || undefined}
       key={item.link}
-      onClick={() => setActive(item.label)}
+      onClick={() => {
+        setActive(item.label);
+        toggle();
+      }}
     >
       <item.icon className={classes.linkIcon} stroke={1.5} />
       <span>{item.label}</span>
