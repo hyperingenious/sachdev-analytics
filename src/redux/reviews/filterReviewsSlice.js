@@ -56,7 +56,7 @@ const reviewFilterSlice = createSlice({
     changeReviewDataWithRating(state, action) {
       state.ratingFilter = action.payload;
       state.reviewData = filterReviewRating(
-        state.reviewData,
+        state.allData,
         action.payload,
         state.timeFilter
       );
