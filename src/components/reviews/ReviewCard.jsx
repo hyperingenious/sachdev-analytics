@@ -8,7 +8,7 @@ export default function ReviewCard({ data }) {
   const emptyArrayOf5 = Array.from({ length: 5 }, (len) => len);
   const starRatingMaker = emptyArrayOf5.map((_, index) => (
     <IconStar
-      key={_}
+      key={index}
       fill={data.rating >= index + 1 ? "yellow" : "none"}
       style={{ width: rem(16), height: rem(16) }}
       color={theme.colors.yellow[6]}
@@ -17,16 +17,16 @@ export default function ReviewCard({ data }) {
 
   return (
     <Card withBorder radius="md" className={classes.card}>
-      <Text fz="sm" c="dimmed">
+      <Text fz="sm">
         {data.review}
       </Text>
       <Group justify="space-between" className={classes.footer}>
         <Center>
-          <Text fz="sm" inline>
+          <Text fz="sm" inline c={'dimmed'}>
             {formatDate(data.created_at)}
           </Text>
         </Center>
-        <Group gap={8} mr={0}>
+        <Group gap={3} mr={0}>
           {starRatingMaker}
           <Text>{data.rating}</Text>
         </Group>

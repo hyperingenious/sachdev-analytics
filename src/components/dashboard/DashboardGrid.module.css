@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  max-width: 49rem;
+  max-width: 60rem;
   grid-auto-rows: minmax(0, auto); /* Adjust the min and max height as needed */
 }
 
@@ -24,6 +24,13 @@
 
 .gridColumnSpan2 {
   grid-column: span 2;
+}
+
+/* For the above medium screens */
+@media (max-width: 1112px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /*For the small devices */

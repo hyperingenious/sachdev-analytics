@@ -57,7 +57,7 @@ export function formatDate(date) {
   const usableDate = new Date(date);
 
   const dateString = `${usableDate.getDate()} ${
-    monthNames[usableDate.getMonth()]
+    monthNames[usableDate.getMonth()].substring(0,3)
   } ${usableDate.getFullYear()}`;
 
   return dateString;
