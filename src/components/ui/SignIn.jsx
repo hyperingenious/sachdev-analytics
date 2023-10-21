@@ -3,12 +3,7 @@ import styles from "./SignIn.module.css";
 import { Button } from "@mantine/core";
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
-import {
-  fetchLogin,
-  fetchSession,
-  resetAuthState,
-} from "../../redux/authSlice";
-import Loader from "./Loader";
+import { fetchLogin, resetAuthState } from "../../redux/authSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -17,7 +12,7 @@ export default function SignUp() {
     password: "",
   });
 
-  const { authenticated, status, error } = useSelector((store) => store.auth);
+  const { authenticated, status, isError } = useSelector((store) => store.auth);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,28 +32,24 @@ export default function SignUp() {
 
     dispatch(resetAuthState());
     dispatch(fetchLogin(credentials));
-
     setCredentials((cred) => ({ ...cred, email: "", password: "" }));
   }
 
   useEffect(
     function () {
-      dispatch(fetchSession());
-
-      if (error) {
-        toast.error(error);
+      if (isError) {
+        toast.error(isError);
         return;
       }
 
       if (authenticated) navigate("/dashboard");
     },
-    [error, authenticated, navigate, dispatch]
+    [isError, authenticated, navigate]
   );
 
   return (
     <>
       <Toaster position="top-center" reverseOrder={false} />
-
       <div className={styles.container}>
         <h1 className={styles.title}>Add your credentials</h1>
         <div className={styles.card}>
@@ -83,12 +74,8 @@ export default function SignUp() {
               }
             />
             <div className={styles.buttons}>
-              <Button type="submit">
-                {status === "loading" ? (
-                  <Loader size="xs" type="oval" color="white" />
-                ) : (
-                  "Login"
-                )}
+              <Button type="submit" disabled={status === "loading"}>
+                Login
               </Button>
             </div>
           </form>

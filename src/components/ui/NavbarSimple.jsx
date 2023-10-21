@@ -6,6 +6,8 @@ import {
 } from "@tabler/icons-react";
 import classes from "./NavbarSimple.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchLogout } from "../../redux/authSlice";
 
 const data = [
   { link: "/dashboard", label: "Dashboard", icon: IconLayoutDashboard },
@@ -13,7 +15,8 @@ const data = [
 ];
 
 export default function NavbarSimple() {
-  const [active, setActive] = useState("Billing");
+  const [active, setActive] = useState("Dashboard");
+  const dispatch = useDispatch();
 
   const links = data.map((item) => (
     <Link
@@ -35,7 +38,10 @@ export default function NavbarSimple() {
         <a
           href="#"
           className={classes.link}
-          onClick={(event) => event.preventDefault()}
+          onClick={(event) => {
+            event.preventDefault();
+            dispatch(fetchLogout());
+          }}
         >
           <IconLogout className={classes.linkIcon} stroke={1.5} />
           <span>Logout</span>

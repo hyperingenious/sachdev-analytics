@@ -1,12 +1,19 @@
+import { useEffect } from "react";
 import SignIn from "../components/ui/SignIn";
-import { login } from "../services/supabase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSession } from "../redux/authSlice";
 
 function Authentication() {
-  async function handleSubmit(e, { email, password }) {
-    e.preventDefault();
-    if (!email || !password) return;
-    login();
-  }
-  return <SignIn handleSubmit={handleSubmit} />;
+  const { authenticated } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+
+  useEffect(
+    function () {
+      if (!authenticated) dispatch(fetchSession());
+    },
+    [dispatch, authenticated]
+  );
+
+  return <SignIn />;
 }
 export default Authentication;

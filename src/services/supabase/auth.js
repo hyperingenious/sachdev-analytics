@@ -9,10 +9,15 @@ export async function login({ email, password }) {
   return data;
 }
 
+export async function logout() {
+  let { error } = await supabase.auth.signOut();
+  if (error) throw error;
+  return null;
+}
+
 export async function getUser() {
   const { data: session } = await supabase.auth.getSession();
-
-  if (!session.session) throw Error('Session not found, login in again');
+  if (!session.session) throw Error("Session not found, login in again");
 
   await supabase.auth.getUser();
 
