@@ -44,7 +44,7 @@ export default function AppShell() {
           }}
         >
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <h3>SB</h3>
+          <p>SACHDEV BROTHERS</p>
           <ActionToggle />
         </MantineAppShell.Header>
 

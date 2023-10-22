@@ -1,7 +1,6 @@
 import { Dropdown } from "../components/ui/Dropdown";
 import SegmentedButton from "../components/ui/SegmentedButton";
 
-
 import ReviewCard from "../components/reviews/ReviewCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,6 +9,7 @@ import {
   setInitialData,
 } from "../redux/reviews/filterReviewsSlice";
 import { useEffect } from "react";
+import { Text } from "@mantine/core";
 
 function Reviews() {
   const { data: reviewData } = useSelector((store) => store.reviewData);
@@ -49,6 +49,19 @@ function Reviews() {
           ]}
         />
       </div>
+      {reviewState && reviewState.length === 0 && (
+        <Text
+          size="xl"
+          fw={600}
+          mt={100}
+          display={"flex"}
+          style={{
+            justifyContent: "center",
+          }}
+        >
+          No Data
+        </Text>
+      )}
       {reviewState && (
         <div
           style={{

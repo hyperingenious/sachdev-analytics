@@ -6,11 +6,6 @@ import {
 } from "../../services/reviews/filterReviewTime";
 import { filterReviewRating } from "../../services/reviews/filterReviewRating";
 
-// const initialState = {
-//   reviewData: rawFromServer,
-//   timeFilter: "all-time", // all-time | 30-day-time | 7-day-time
-//   ratingFilter: 15, // 15 | 1 | 2 | 3 | 4 | 5
-// };
 const initialState = {
   allData: null,
   reviewData: null,
@@ -31,10 +26,7 @@ const reviewFilterSlice = createSlice({
     changeReviewDataWithTime(state, action) {
       if (action.payload === "all-time") {
         state.timeFilter = action.payload;
-        state.reviewData = filterAllTimeData(
-          state.allData,
-          state.ratingFilter
-        );
+        state.reviewData = filterAllTimeData(state.allData, state.ratingFilter);
       }
 
       if (action.payload === "30-day-time") {
