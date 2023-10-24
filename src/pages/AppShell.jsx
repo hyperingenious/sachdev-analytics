@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import { useDisclosure } from "@mantine/hooks";
 import { AppShell as MantineAppShell, Burger } from "@mantine/core";
@@ -44,7 +44,7 @@ export default function AppShell() {
           }}
         >
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <p>SACHDEV BROTHERS</p>
+        <p>SACHDEV BROTHERS</p>
           <ActionToggle />
         </MantineAppShell.Header>
 

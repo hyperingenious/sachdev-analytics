@@ -32,7 +32,7 @@ function filteredDataAsPerTime(data, timeFilter) {
  */
 export function filterReviewRating(allTimeData, ratingFilter, timeFilter) {
   const filteredDataOnTime = filteredDataAsPerTime(allTimeData, timeFilter);
-  if (ratingFilter === 15) {
+  if (ratingFilter === 'All Stars') {
     return filteredDataOnTime;
   }
   const filterAsPerRating = filteredDataOnTime.filter(

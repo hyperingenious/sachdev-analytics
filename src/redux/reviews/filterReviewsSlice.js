@@ -10,7 +10,7 @@ const initialState = {
   allData: null,
   reviewData: null,
   timeFilter: null, // all-time | 30-day-time | 7-day-time
-  ratingFilter: null, // 15 | 1 | 2 | 3 | 4 | 5
+  ratingFilter: null, // 'All Stars' | 1 | 2 | 3 | 4 | 5
 };
 
 const reviewFilterSlice = createSlice({
@@ -21,7 +21,7 @@ const reviewFilterSlice = createSlice({
       state.allData = action.payload;
       state.reviewData = action.payload;
       state.timeFilter = "all-time";
-      state.ratingFilter = 15;
+      state.ratingFilter = 'All Stars';
     },
     changeReviewDataWithTime(state, action) {
       if (action.payload === "all-time") {

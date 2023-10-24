@@ -8,13 +8,14 @@ import {
   changeReviewDataWithTime,
   setInitialData,
 } from "../redux/reviews/filterReviewsSlice";
+
 import { useEffect } from "react";
 import { Text } from "@mantine/core";
 
 function Reviews() {
   const { data: reviewData } = useSelector((store) => store.reviewData);
   const { reviewData: reviewState, ratingFilter } = useSelector(
-    (store) => store.reviewsFilter
+    (store) => store.reviewsFilter 
   );
   const dispatch = useDispatch();
 
@@ -36,7 +37,7 @@ function Reviews() {
         <Dropdown
           valueType={ratingFilter}
           name={"Rating"}
-          argOptions={[1, 2, 3, 4, 5, 15]}
+          argOptions={[1, 2, 3, 4, 5, 'All Stars']}
           dropdownOptions={[1, 2, 3, 4, 5, "All stars"]}
           onClick={(arg) => dispatch(changeReviewDataWithRating(arg))}
         />
