@@ -168,8 +168,7 @@ function Label({ label }) {
   );
 }
 
-function StarAverage({ payload }) {
-  return (
+function StarAverage({ payload }) {  return (
     <>
       {payload.length ? (
         <Box align="flex-start" justify="flex-start" gap="xs">

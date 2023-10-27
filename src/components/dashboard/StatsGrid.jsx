@@ -4,8 +4,6 @@ import {
   IconDiscount2,
   IconReceipt2,
   IconCoin,
-  IconArrowUpRight,
-  IconArrowDownRight,
 } from '@tabler/icons-react';
 import classes from '../../assets/styles/StatsGrid.module.css';
 
@@ -39,9 +37,6 @@ export default function StatsGrid() {
 
         <Group align="flex-end" gap="xs" mt={25}>
           <Text className={classes.value}>{stat.value}</Text>
-          {/* <Text c={stat.diff > 0 ? 'teal' : 'red'} fz="sm" fw={500} className={classes.diff}>
-            <span>{stat.diff}</span>
-          </Text> */}
         </Group>
 
         <Text fz="xs" c="dimmed" mt={7}>
