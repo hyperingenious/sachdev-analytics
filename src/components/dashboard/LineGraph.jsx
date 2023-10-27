@@ -16,7 +16,8 @@ import {
 
 import { colorArray, filterCombinations } from "../../config/app-data";
 import { useDispatch, useSelector } from "react-redux";
-import { Dropdown } from "../ui/Dropdown";import { Box, Card, Text } from "@mantine/core";
+import { Dropdown } from "../ui/Dropdown";
+import { Box, Card, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 
 import SegmentedButton from "../ui/SegmentedButton";
@@ -33,12 +34,18 @@ function LineGraph({ reviewData }) {
 
   useEffect(
     function () {
-      dispatch(setInitialData(reviewData));
       window.innerWidth < 600
         ? setLineGraphDimensions({ width: "100%", height: 140 })
         : setLineGraphDimensions({ width: "100%", height: 225 });
     },
-    [setLineGraphDimensions, dispatch, reviewData]
+    [setLineGraphDimensions]
+  );
+
+  useEffect(
+    function () {
+      dispatch(setInitialData(reviewData));
+    },
+    [reviewData, dispatch]
   );
 
   return (
@@ -168,7 +175,8 @@ function Label({ label }) {
   );
 }
 
-function StarAverage({ payload }) {  return (
+function StarAverage({ payload }) {
+  return (
     <>
       {payload.length ? (
         <Box align="flex-start" justify="flex-start" gap="xs">
