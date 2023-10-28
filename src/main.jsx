@@ -10,6 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     {" "}
     <MantineProvider
+      defaultColorScheme="dark"
       theme={{
         fontFamily: "Verdana, sans-serif",
         fontFamilyMonospace: "Monaco, Courier, monospace",

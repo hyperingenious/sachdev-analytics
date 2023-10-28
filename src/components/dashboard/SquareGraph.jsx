@@ -12,6 +12,13 @@ const squareColor = [
   "#26a641",
   "#39d353",
 ];
+const displaySquareColor = [
+  "#072516",
+  "#0e4429",
+  "#006d32",
+  "#26a641",
+  "#39d353",
+];
 
 function SquareGraph({ reviewData }) {
   const dispatch = useDispatch();
@@ -33,7 +40,7 @@ function SquareGraph({ reviewData }) {
         <Group gap={2}>
           <Text size="xs">1 to 5</Text>
           <Group gap={0}>
-            {squareColor.map((sq) => (
+            {displaySquareColor.map((sq) => (
               <div
                 key={sq}
                 className={styles.square}

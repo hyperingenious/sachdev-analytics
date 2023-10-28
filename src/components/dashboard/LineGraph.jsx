@@ -149,7 +149,7 @@ function LineGraphFilterBar({
       <SegmentedButton
         onChange={(arg) => dispatch(changeDataAsPerTime(arg))}
         data={[
-          { label: "All time", value: "all-time" },
+          { label: "All", value: "all-time" },
           { label: "1M", value: "30-day-time" },
           { label: "7D", value: "7-day-time" },
         ]}

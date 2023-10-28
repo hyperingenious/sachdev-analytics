@@ -37,10 +37,10 @@ export default function SignUp() {
 
   useEffect(
     function () {
-      if (isError) {
-        toast.error(isError);
-        return;
-      }
+      // if (isError) {
+      //   toast.error(isError);
+      //   return;
+      // }
 
       if (authenticated) navigate("/dashboard");
     },
