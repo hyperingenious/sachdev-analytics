@@ -159,6 +159,7 @@ function LineGraphFilterBar({
 }
 
 function CustomTooltip({ _, payload, label }) {
+  console.log(payload);
   return (
     <Card padding="xs" radius="sm" withBorder>
       <Label label={label} />
@@ -178,7 +179,7 @@ function Label({ label }) {
 function StarAverage({ payload }) {
   return (
     <>
-      {payload.length ? (
+      {payload.length || payload !== null ? (
         <Box align="flex-start" justify="flex-start" gap="xs">
           {payload.map((data) => (
             <Text

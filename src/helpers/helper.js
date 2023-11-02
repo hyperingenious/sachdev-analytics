@@ -10,7 +10,7 @@ export function getLast5Month() {
 
   for (let i = 0; i < 5; i++) {
     // Pushing monthname to an array
-    last5Months.push(monthNames[today.getMonth()]);
+    last5Months.push(monthNames[today.getMonth()].substring(0, 3));
 
     // Subtract 1 month from current month
     today.setMonth(today.getMonth() - 1);
@@ -41,7 +41,7 @@ export function todayMinusWhat(daysBack) {
  * //   { name: '4 Star', value: 0 },
  * //   { name: '5 Star', value: 0 }
  * // ]
-*/
+ */
 export function initializeStarStorageArray() {
   return Array.from({ length: 5 }, (_, index) => {
     return { name: `${index + 1} Star`, value: 0 };
@@ -56,9 +56,9 @@ export function initializeStarStorageArray() {
 export function formatDate(date) {
   const usableDate = new Date(date);
 
-  const dateString = `${usableDate.getDate()} ${
-    monthNames[usableDate.getMonth()].substring(0,3)
-  } ${usableDate.getFullYear()}`;
+  const dateString = `${usableDate.getDate()} ${monthNames[
+    usableDate.getMonth()
+  ].substring(0, 3)} ${usableDate.getFullYear()}`;
 
   return dateString;
 }
