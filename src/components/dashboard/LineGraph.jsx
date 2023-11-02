@@ -179,7 +179,7 @@ function Label({ label }) {
 function StarAverage({ payload }) {
   return (
     <>
-      {payload.length || payload !== null ? (
+      {payload !== null ? (
         <Box align="flex-start" justify="flex-start" gap="xs">
           {payload.map((data) => (
             <Text
